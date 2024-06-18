@@ -1,0 +1,77 @@
+.container-fluid.register {
+    background-color: #ECEBEB;
+    padding: 20px 0;
+  
+    // Flexbox to center the tabs
+    display: flex;
+    justify-content: center;
+    
+    // Tab styles
+    .nav-tabs {
+      border-bottom: none;
+  
+      .nav-item {
+        .nav-link {
+          color: #000;
+          font-weight: bold;
+          padding: 10px 30px;
+          font-size: large;
+          border: none;
+          background: transparent;
+          font-family: 'Lato', sans-serif;
+  
+          &.active {
+            color: #000; // Black color for active tab
+            border-bottom: 2px solid #000;
+          }
+  
+          &:not(.active) {
+            color: #888; // Gray color for inactive tab
+          }
+
+          @media (max-width: $breakpoint-desktop) {
+            font-size: medium;
+        }
+        }
+      }
+    }
+  }
+
+.container-fluid.register-id {
+background-color: #ECEBEB;
+padding: 20px 0;
+
+// Flexbox to center the tabs
+display: flex;
+justify-content: center;
+
+    .btn-connexion{
+        width: 100%;
+        padding: 15px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+
+        // Hover effect
+        &:hover {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+        }
+    }
+
+    .mdp-size{
+        font-size: 12px;
+        color: #000;
+    }
+
+    .text-danger {
+        color: red;
+    }
+
+    .input-design{
+        width: 100%;
+        border: 1px solid grey;
+        padding: 10px;
+      }
+}
