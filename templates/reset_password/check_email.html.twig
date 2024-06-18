@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Password Reset Email Sent{% endblock %}
+{% block title %}Mot de passe oublié{% endblock %}
 
 {% block body %}
-<div class="container-fluid register">
+<div class="container-fluid reset">
     <ul class="nav nav-tabs">
       <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="{{ path('app_login') }}">CONNEXION</a>
@@ -14,7 +14,7 @@
     </ul>
 </div>
 
-<div class="container-fluid register-id">
+<div class="container-fluid reset-id">
   <div class="row w-50 w-100-sm">
     <div class="col-md-12 border bg-light">
         <div class="p-3">
@@ -26,12 +26,11 @@
                     </p>
                     <p>
                         Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier de courrier indésirable.
-                    </p>
-                    <a class="btn btn-dark w-100 p-3" href="{{ path('app_forgot_password_request') }}">
+                    </p> 
+                </div>
+                <a href="{{ path('app_forgot_password_request') }}" class="btn-reset mt-5">
                         RÉESSAYER
                     </a>
-                    </div>  
-                </div>
             </div>
         </div>
       </div>

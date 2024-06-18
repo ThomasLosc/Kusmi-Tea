@@ -101,6 +101,24 @@ justify-content: center;
                   border: 1px solid #000;
               }
           }
+
+          .btn-reset{
+            width: 97%;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            text-decoration: none;
+            text-align: center;
+      
+            // Hover effect
+            &:hover {
+                background-color: #fff;
+                color: #000;
+                border: 1px solid #000;
+              }
+        }
         
           .mdp-size {
               font-size: 12px;

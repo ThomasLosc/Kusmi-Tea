@@ -14,10 +14,17 @@
                 <img src={{ asset('build/images/icon-shop.svg') }} alt="Icon Shops"/>
                 <span>Boutiques</span>
             </a>
-            <a href="" class="header__top__icons__item">
+            {% if app.user %}
+                <a href="{{ path('app_profil') }}" class="header__top__icons__item">
+                    <img src={{ asset('build/images/icon-account.svg') }} alt="Icon Logout"/>
+                    <span>Compte</span>
+                </a>
+            {% else %}
+            <a href="{{ path('app_login') }}" class="header__top__icons__item">
                 <img src={{ asset('build/images/icon-account.svg') }} alt="Icon Account"/>
                 <span>Compte</span>
             </a>
+            {% endif %}
             <a href="" class="header__top__icons__item">
                 <img src={{ asset('build/images/icon-cart.svg') }} alt="Icon Cart"/>
                 <span>Panier</span>
