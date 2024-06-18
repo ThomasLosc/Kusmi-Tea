@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="{{ asset('build/images/icon-site.webp') }}" type="image/png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% block stylesheets %}
         <!-- PLUGIN -->
             <script src="https://kit.fontawesome.com/f560ccd9e1.js" crossorigin="anonymous"></script>
@@ -14,6 +15,7 @@
         {% block javascripts %}
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
             {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('footer') }}
         {% endblock %}
     </head>
     <body>

@@ -18,6 +18,10 @@ Encore
         from: './assets/images',
         to: 'images/[path][name].[ext]', 
     })
+    .copyFiles({
+        from: './assets/fonts',
+        to: 'fonts/[name].[ext]',
+    })
     /*
      * ENTRY CONFIG
      *
@@ -25,6 +29,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('footer', './assets/js/footer.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
