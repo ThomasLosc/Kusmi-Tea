@@ -30,6 +30,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('footer', './assets/js/footer.js')
+    .addEntry('header', './assets/js/header.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
