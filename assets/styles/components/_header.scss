@@ -1,0 +1,263 @@
+.header {
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+
+    @media (max-width: $breakpoint-desktop) {
+        padding: 0.2rem 1rem;
+    }
+
+    &__top {
+        max-width: $container;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        &__icons {
+            display: flex;
+            gap: 1.5rem;
+
+            @media (max-width: $breakpoint-desktop) {
+                gap: 0.5rem;
+                padding: 2rem 1rem;
+            }
+
+            &__item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-decoration: none;
+                color: black;
+                font-size: 0.625rem;
+
+                img {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+
+                &:hover {
+                    color: black;
+                }
+
+                @media (max-width: $breakpoint-desktop) {
+                    span {
+                        display: none;
+                    }
+                }
+
+                &-burger {
+                    background: none;
+                    border: none;
+                    display: none;
+
+                    @media (max-width: $breakpoint-desktop) {
+                       display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    &__menu {
+        position: relative;
+
+        @media (max-width: $breakpoint-desktop) {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 1rem;
+            bottom: 0;
+            background-color: white;
+            height: 100vh;
+            padding: 2rem 0.5rem;
+        }
+
+        &__back {
+            display: none;
+
+            @media (max-width: $breakpoint-desktop) {
+                display: block;
+                position: relative;
+                top: 1rem;
+                left: 0;
+                border: none;
+                background: none;
+                z-index: 10;
+                width: fit-content;
+
+                img {
+                    width: 2rem;
+                }
+            }
+        }
+
+        &__close {
+            display: none;
+
+            
+            @media (max-width: $breakpoint-desktop) {
+                display: block;
+                position: absolute;
+                top: 0.5rem;
+                right: 0;
+                border: none;
+                background: none;
+                z-index: 10;
+
+                img {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                }
+            }
+        }
+
+        &__categories {
+            max-width: $container;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+
+            @media (max-width: $breakpoint-desktop) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            &__item {
+                list-style: none;
+                padding-bottom: 0.5rem;
+
+                @media (max-width: $breakpoint-desktop) {
+                    border-bottom: 1px solid lightgray;
+                    font-size: 1.125rem;
+                    width: 100%;
+                    padding: 1rem 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    &-children {
+                        &:after {
+                            content: '';
+                            background-image: url('/assets/images/icon-chevron.webp');
+                            background-size: contain;
+                            width: 1rem;
+                            height: 1rem;
+                            transform: rotate(-90deg);
+                            display: block;
+                        }
+                    }
+                }
+
+                &:hover {
+                    border-bottom: 1px solid black;
+                    
+                    .header__menu__categories__item__title {
+                        font-weight: 600;
+                        color: black;
+
+                        &-orange {
+                            color: orange;
+                        }
+
+                        &-red {
+                            color: red;
+                        }
+                    }
+
+                    @media (min-width: $breakpoint-desktop) {
+                        .header__menu__categories__item__dropdown {
+                            display: grid;
+                        }
+                    }
+                }
+                
+                &__title {
+                    text-transform: uppercase;
+                    color: black;
+                    text-decoration: none;
+
+                    &-orange {
+                        color: orange;
+                        font-weight: 600;
+                    }
+
+                    &-red {
+                        color: red;
+                        font-weight: 600;
+                    }
+                }
+
+                &__dropdown {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 2.2rem;
+                    background-color: white;
+                    border-top: 1px solid lightgray;
+                    border-bottom: 1px solid lightgray;
+                    display: none;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 2rem;
+                    padding: 2rem 10rem;
+
+                    @media (max-width: $breakpoint-desktop) {
+                        position: fixed;
+                        grid-template-columns: 1fr;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 1rem;
+                        padding: 1rem 0.5rem;
+                        overflow-y: auto;
+                        z-index: 2;
+                        border: none;
+                    }
+
+                    &__list {
+                        @media (max-width: $breakpoint-desktop) {
+                            &:first-child {
+                                margin-top: 2rem;
+                            }
+                        }
+
+                        span {
+                            border-bottom: 1px solid lightgray;
+                            padding-bottom: 0.7rem;
+                            text-transform: uppercase;
+                            width: 100%;
+                            display: inline-block;
+                        }
+
+                        ul {
+                            padding-left: 0;
+                            margin-top: 1rem;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.5rem;
+
+                            li {
+                                list-style-type: none;
+
+                                a {
+                                    text-decoration: none;
+                                    color: black;
+
+                                    &:hover {
+                                        text-decoration: underline;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
