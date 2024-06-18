@@ -29,7 +29,7 @@
                     <label for="inputPassword" class="mb-2 mt-3"><span class="text-danger">*</span> Mot de passe</label>
                     <input type="password" name="password" id="inputPassword" class="input-design" autocomplete="current-password" required>
                     <div class=" float-end mt-3">
-                        <a href="#" class="mt-3">Mot de passe oublié ?</a>
+                        <a href="{{ path('app_forgot_password_request') }}" class="mt-3">Mot de passe oublié ?</a>
                     </div>
                     <input type="hidden" name="_csrf_token"
                         value="{{ csrf_token('authenticate') }}"

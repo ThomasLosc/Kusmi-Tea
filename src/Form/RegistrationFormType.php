@@ -74,19 +74,6 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'mapped' => false,
                 'invalid_message' => "Les champs du mot de passe doivent correspondre.",
-                'constraints' => array(
-                    new NotBlank(array(
-                        'message' => "Le mot de passe ne peut pas être vide.",
-                    )),
-                    new Length(array(
-                        'min' => 8,
-                        'minMessage' => "Le mot de passe doit comporter au moins {{ limit }} caractères."
-                    )),
-                    new Regex(array(
-                        'pattern' => "/^(?=.*[A-Z])/",
-                        'message' => "Le mot de passe doit contenir au moins une lettre majuscule."
-                    )),
-                ),
                 'first_options'  => array( 
                     'label' => 'Mot de passe',
                     'attr' => [
@@ -105,6 +92,19 @@ class RegistrationFormType extends AbstractType
                         'class' => 'form-label fw-bold'
                     ],
                 ),
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Le mot de passe ne peut pas être vide.",
+                    ]),
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => "Le mot de passe doit comporter au moins {{ limit }} caractères."
+                    ]),
+                    new Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
+                        'message' => "Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial."
+                    ]),
+                ],
             ])
         ;
     }

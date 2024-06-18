@@ -1,0 +1,45 @@
+<style>
+.password-reset-message {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.password-reset-message h1 {
+    font-size: 24px;
+    color: #000;
+}
+
+.password-reset-message p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.password-reset-message a {
+    display: block;
+    font-size: 18px;
+    color: #000;
+    text-decoration: none;
+    margin: 20px 0;
+}
+
+.password-reset-message a:hover {
+    text-decoration: underline;
+}
+
+</style>
+<div class="password-reset-message">
+    <h1>Bonjour !</h1>
+    <p>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien ci-dessous :</p>
+    <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+    <p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+    <p>À bientôt !</p>
+</div>
