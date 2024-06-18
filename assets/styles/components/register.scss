@@ -74,4 +74,41 @@ justify-content: center;
         border: 1px solid grey;
         padding: 10px;
       }
+
+      @media (max-width: 576px) {
+        .w-100-sm {
+          width: 80% !important;
+        }
+      }
+      
+      .container-fluid.register-id {
+          background-color: #ECEBEB;
+          padding: 20px 0;
+        
+          display: flex;
+          justify-content: center;
+        
+          .btn-connexion {
+              width: 100%;
+              padding: 15px;
+              background-color: #000;
+              color: #fff;
+              border: none;
+        
+              &:hover {
+                  background-color: #fff;
+                  color: #000;
+                  border: 1px solid #000;
+              }
+          }
+        
+          .mdp-size {
+              font-size: 12px;
+              color: #000;
+          }
+        
+          .text-danger {
+              color: red;
+          }
+      }
 }
