@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Informations personnelles{% endblock %}
+
+{% block body %}
+<div class="container-fluid profil-edit">
+    <h1 class="text-center active">INFORMATIONS PERSONNELLES</h1>
+</div>
+<div class="container-fluid profil-edit-id">
+    <div class="row w-80 mx-auto">
+        <div class="col-md-12">
+            <div class="border bg-light">
+                <div class="p-5">
+                    <h5>Modifier le profil</h5>
+                    <hr class="mb-3 mt-3">
+                    {{ form_start(form) }}
+                        <div class="row w-100">
+                            <div class="col-md-6 mt-3">
+                                {{ form_row(form.prenom) }}
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                {{ form_row(form.nom) }}
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                {{ form_row(form.telephone) }}
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                {{ form_row(form.email) }}
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                {{ form_row(form.dateNaissance) }}
+                                <span class="info-size mt-2">Renseignez votre date de naissance.</span>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                
+                            </div>
+                            <div class="col-6 col-md-6 mt-5 btn-container">
+                                <a href="{{ path('app_profil') }}" class="btn-annuler">ANNULER</a>
+                            </div>
+                            <div class="col-6 col-md-6 mt-5 btn-container">
+                                <button type="submit" class="btn-enregistrer">ENREGISTRER</button>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
