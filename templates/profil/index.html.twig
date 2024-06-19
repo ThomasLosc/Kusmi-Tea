@@ -36,8 +36,10 @@
                     <p class="label-2">{{ app.user.nom }}</p>
                     <p class="label">E-mail</p>
                     <p class="label-2">{{ app.user.email }}</p>
+                    <p class="label">Téléphone</p>
+                    <p class="label-2">{{ (app.user.telephone is null) ? 'Renseignez votre numéro de téléphone.' : app.user.telephone }}</p>
                     <p class="label">Date de naissance</p>
-                    <p class="label-2">{{ (app.user.dateNaissance is null) ? 'Renseignez votre date de naissance.' : app.user.dateNaissance|date('') }}</p>
+                    <p class="label-2">{{ (app.user.dateNaissance is null) ? 'Renseignez votre date de naissance.' : app.user.dateNaissance|date('d/m/Y') }}</p>
                 </div>
             </div>
 
@@ -57,21 +59,20 @@
                 <div class="p-3">
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <h5>Carnet d’adresses</h5>
-                        <a class="a-btn" href="#">Ajouter</a>
+                        <a class="a-btn" href="{{ path('app_profil_adresse') }}">Ajouter</a>
                     </div>
                     <hr class="mb-3 mt-3">
-                    {% if app.user.adresse is null %}
-                    <p class="label-2">Renseignez une adresse pour passer votre commande rapidement.</p>
+                    {% for adresse in adresses %}
+                     <div class="adresse-details mt-3">
+                        <p class="label">{{ adresse.nomAdresse }}</p>
+                        <p class="label-3">{{ adresse.adresse }}</p>
+                        <p class="label-3">{{ adresse.prenom }} {{ adresse.nom }}</p>
+                        <p class="label-3">{{ adresse.ville }}, {{ adresse.pays }} {{ adresse.codePostal }}</p>
+                        <p class="label-3">{{ adresse.telephone }}</p>
+                    </div>
                     {% else %}
-                    <p class="label">Adresse</p>
-                    <p class="label-2">{{ app.user.adresse }}</p>
-                    <p class="label">Code postal</p>
-                    <p class="label-2">{{ app.user.codePostal }}</p>
-                    <p class="label">Ville</p>
-                    <p class="label-2">{{ app.user.ville }}</p>
-                    <p class="label">Pays</p>
-                    <p class="label-2">{{ app.user.pays }}</p>
-                    {% endif %}
+                    <p class="label-2">Renseignez une adresse pour passer votre commande rapidement.</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>

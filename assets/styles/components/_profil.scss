@@ -147,6 +147,18 @@ justify-content: center;
   }
 }
 
+.adresse-details {
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  &.label-3 {
+    font-size: 14px; // Exemple de taille de police, ajustez selon vos besoins
+    line-height: 1.2; // Ajuste l'espacement entre les lignes
+  }
+}
+
 img{
   width: 100%;
   height: auto;
