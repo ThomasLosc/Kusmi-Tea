@@ -1,7 +1,209 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('home') }}
+{% endblock %}
+
+{% block title %}Kusmi Tea | Thés et infusions Bio de qualité{% endblock %}
 
 {% block body %}
+
+<section class="hero-slider swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide hero-slider__item hero-slider__item-first">
+            <img src={{ asset('build/images/nouveau_pastille.svg') }} alt="Rituel Minceur" />
+            <img src={{ asset('build/images/efficacite_prouve.svg') }} alt="Efficacité prouvée" class="hero-slider__item-first__tag" />
+            <h2>Atteignez vos objectifs !</h2>
+            <p>Découvrez Rituel Minceur, enrichi en extrait thé vert</p>
+            <a href="">Je découvre</a>
+        </div>
+        <div class="swiper-slide hero-slider__item hero-slider__item-second">
+            <h2>Thé glacé à emporter !</h2>
+            <p>Notre ensemble nomade à seulement 36,90€</p>
+            <div class="hero-slider__item-second__prices">
+                <span>49,80€</span>
+                <span>36,90€</span>
+            </div>
+            <a href="">J'en profite</a>
+        </div>
+        <div class="swiper-slide hero-slider__item hero-slider__item-third">
+            <img src={{ asset('build/images/efficacite_prouve.svg') }} alt="Efficacité prouvée" class="hero-slider__item-third__tag" />
+            <h2>Agissez pour votre bien-être</h2>
+            <p>Découvrez notre gamme Rituel, thés et infusions aux bienfaits prouvés</p>
+            <a href="">Je découvre</a>
+        </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</section>
+
+<section class="products-selection">
+    <h2>Notre <strong>sélection</strong> du moment</h2>
+    <p>Découvrez nos incontournables à déguster à tout moment de la journée. Bien-être, classiques, aromatisés à vous de choisir votre thé préféré.</p>
+    <div class="products-selection__products swiper">
+        <div class="swiper-wrapper">
+            <div class="products-selection__products__item swiper-slide">
+                <div class="products-selection__products__item__image">
+                    <img src={{ asset('build/images/new.webp') }} alt="Nouveautés" class="products-selection__products__item__image-tag"/>
+                    <img src={{ asset('build/images/rituel-minceur.webp') }} alt="Rituel Minceur" class="products-selection__products__item__image-product"/>
+                </div>
+                <div class="products-selection__products__item__infos">
+                    <h3>Rituel Minceur</h3>
+                    <p>Thé minceur (thé vert, maté)</p>
+                    <span>Boîte 100g</span>
+                    <div class="products-selection__products__item__infos__prices">
+                        <span>23,90 €</span>
+                    </div>
+                </div>
+                <button>Ajouter</button>
+            </div>
+            <div class="products-selection__products__item swiper-slide">
+                <div class="products-selection__products__item__image">
+                    <img src={{ asset('build/images/new.webp') }} alt="Nouveautés" class="products-selection__products__item__image-tag"/>
+                    <img src={{ asset('build/images/trio-sante.webp') }} alt="Trio Santé" class="products-selection__products__item__image-product"/>
+                </div>
+                <div class="products-selection__products__item__infos">
+                    <h3>Trio Santé</h3>
+                    <p>Minceur, Sommeil et Défenses Immunitaires</p>
+                    <span></span>
+                    <div class="products-selection__products__item__infos__prices">
+                        <span>29,70 €</span>
+                    </div>
+                </div>
+                <button>Ajouter</button>
+            </div>
+            <div class="products-selection__products__item swiper-slide">
+                <div class="products-selection__products__item__image">
+                    <div class="products-selection__products__item__image-promotion">-25%</div>
+                    <img src={{ asset('build/images/ensemble-nomade.webp') }} alt="Ensemble Nomade" class="products-selection__products__item__image-product"/>
+                </div>
+                <div class="products-selection__products__item__infos">
+                    <h3>Ensemble à thé glacé nomade</h3>
+                    <p>Coffrets 24 sachets Thés Glacés et un Mug de voyage</p>
+                    <span></span>
+                    <div class="products-selection__products__item__infos__prices">
+                        <span>36,90 €</span>
+                        <span>49,90 €</span>
+                    </div>
+                </div>
+                <button>Ajouter</button>
+            </div>
+            <div class="products-selection__products__item swiper-slide">
+                <div class="products-selection__products__item__image">
+                    <div class="products-selection__products__item__image-promotion">-20%</div>
+                    <img src={{ asset('build/images/ensemble-the-glace.webp') }} alt="Ensemble thé glacé" class="products-selection__products__item__image-product"/>
+                </div>
+                <div class="products-selection__products__item__infos">
+                    <h3>Ensemble à thé glacé</h3>
+                    <p>AquaExotica, AquaSummer et une carafe bleue</p>
+                    <span></span>
+                    <div class="products-selection__products__item__infos__prices">
+                        <span>39,90 €</span>
+                        <span>52,30 €</span>
+                    </div>
+                </div>
+                <button>Ajouter</button>
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+
+<section class="products-pub">
+    <div class="products-pub__item">
+        <div class="products-pub__item__image products-pub__item__image-first"></div>
+        <div class="products-pub__item__content products-pub__item__content-beige">
+            <h2>Thé glacé à emporter !</h2>
+            <p>Notre ensemble nomade à seulement 36,90€</p>
+            <a href="">J'en profite</a>
+        </div>
+    </div>
+    <div class="products-pub__item">
+        <div class="products-pub__item__image products-pub__item__image-second"></div>
+        <div class="products-pub__item__content products-pub__item__content-rose">
+            <h2>Agissez pour votre bien-être</h2>
+            <p>Thés et infusions aux bienfaits prouvés</p>
+            <a href="">Je découvre</a>
+        </div>
+    </div>
+</section>
+
+<section class="tea-selector">
+    <h2><strong>Choisissez</strong> votre type de thé</h2>
+    <div class="tea-selector__products">
+        <a href="" class="tea-selector__products__item">
+            <img src={{ asset('build/images/tea-type-the_vert.webp') }} alt="Thé vert" />
+            <span>Thé vert</span>
+        </a>
+        <a href="" class="tea-selector__products__item">
+            <img src={{ asset('build/images/tea-type-the_noir.webp') }} alt="Thé noir" />
+            <span>Thé noir</span>
+        </a>
+        <a href="" class="tea-selector__products__item">
+            <img src={{ asset('build/images/tea-type-the_blanc.webp') }} alt="Thé blanc" />
+            <span>Thé blanc</span>
+        </a>
+        <a href="" class="tea-selector__products__item">
+            <img src={{ asset('build/images/tea-type-infusion.webp') }} alt="Infusions et tisanes" />
+            <span>Infusions et tisanes</span>
+        </a>
+        <a href="" class="tea-selector__products__item">
+            <img src={{ asset('build/images/tea-type-rooibos.webp') }} alt="Rooibos" />
+            <span>Rooibos</span>
+        </a>
+    </div>
+</section>
+
+<section class="products-pub">
+    <div class="products-pub__item">
+        <div class="products-pub__item__image products-pub__item__image-third"></div>
+        <div class="products-pub__item__content products-pub__item__content-brown">
+            <h2>L'infusion Alain Ducasse</h2>
+            <p>Découvrez la nouvelle infusion étoilée</p>
+            <a href="">Je découvre</a>
+        </div>
+    </div>
+    <div class="products-pub__item">
+        <div class="products-pub__item__image products-pub__item__image-fourth"></div>
+        <div class="products-pub__item__content products-pub__item__content-peach">
+            <h2>Offre thé glacé</h2>
+            <p>Ensemble de thé glacé à 39,90€</p>
+            <a href="">J'en profite</a>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter">
+    <div class="newsletter__form">
+        <h2>Inscrivez-vous à notre newsletter pour recevoir nos offres et actualités.</h2>
+        <form>
+            <input type="email" placeholder="Votre email" required/>
+            <input type="submit" value="Inscription" />
+        </form>
+        <p>En cliquant sur "INSCRIPTION", vous acceptez expressément de recevoir les offres commerciales et les actualités de Kusmi Tea par email selon les conditions suivantes et conformément à notre Politique de Confidentialité disponible <a href="">ici</a>.</p>
+    </div>
+    <div class="newsletter__networks">
+        <a href="" class="newsletter__networks__item newsletter__networks__item-light">
+            <img src={{ asset('build/images/icon-facebook.svg') }} alt="Facebook"/>
+        </a>
+        <a href="" class="newsletter__networks__item newsletter__networks__item-dark">
+            <img src={{ asset('build/images/icon-twitter.svg') }} alt="Twitter"/>
+        </a>
+        <a href="" class="newsletter__networks__item newsletter__networks__item-dark">
+            <img src={{ asset('build/images/icon-instagram.svg') }} alt="Instagram"/>
+        </a>
+        <a href="" class="newsletter__networks__item newsletter__networks__item-light">
+            <img src={{ asset('build/images/icon-pinterest.svg') }} alt="Pinterest"/>
+        </a>
+        <a href="" class="newsletter__networks__item newsletter__networks__item-light">
+            <img src={{ asset('build/images/icon-linkedin.svg') }} alt="LinkedIn"/>
+        </a>
+        <a href="" class="newsletter__networks__item newsletter__networks__item-dark">
+            <img src={{ asset('build/images/icon-youtube.svg') }} alt="YouTube"/>
+        </a>
+    </div>
+</section>
 
 {% endblock %}

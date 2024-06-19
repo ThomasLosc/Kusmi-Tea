@@ -1,0 +1,704 @@
+.hero-slider {
+    margin-bottom: 4rem;
+
+    &__item {
+        height: 25rem;
+
+        a {
+            color: white;
+            background-color: black;
+            text-transform: uppercase;
+            border: 1px solid white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            font-weight: bold;
+
+            &:hover {
+                background-color: white;
+                color: black;
+            }
+        }
+
+        &-first {
+            background-image: url('/assets/images/rituel_minceur_hero_desk.webp');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 5rem;
+
+            @media (max-width: $breakpoint-desktop) {
+                padding: 2rem;
+            }
+
+            &__tag {
+                position: absolute;
+                top: 8%;
+                right: 27%;
+                width: 6rem;
+                height: auto;
+
+                @media (max-width: $breakpoint-desktop) {
+                    width: 4rem;
+                    right: 5%;
+                    top: 10%;
+                }
+            }
+
+            h2 {
+                font-size: 2.3rem;
+                width: 20%;
+                font-family: "Sophillia", "serif";
+
+                @media (max-width: $breakpoint-desktop) {
+                    font-size: 1.5rem;
+                    width: 80%;
+                }
+            }
+
+            p {
+                font-size: 1.25rem;
+                width: 20%;
+                font-weight: bold;
+
+                @media (max-width: $breakpoint-desktop) {
+                    font-size: 1rem;
+                    width: 80%;
+                }
+            }
+
+            a {
+                margin-top: 3rem;
+                display: block;
+                width: fit-content;
+
+                @media (max-width: $breakpoint-desktop) {
+                    margin-top: 10rem;
+                }
+            }
+        }
+
+        &-second {
+            background-image: url('/assets/images/kit_nomade_hero_desk.webp');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 5rem;
+
+            @media (max-width: $breakpoint-desktop) {
+                padding: 2rem;
+            }
+
+            h2 {
+                font-size: 2.3rem;
+                text-transform: uppercase;
+
+                @media (max-width: $breakpoint-desktop) {
+                    font-size: 1.5rem;
+                }
+            }
+
+            p {
+                font-size: 1.25rem;
+                font-weight: bold;
+
+                @media (max-width: $breakpoint-desktop) {
+                    font-size: 1rem;
+                }
+            }
+
+            &__prices {
+                font-size: 2rem;
+                padding-left: 20rem;
+
+                @media (max-width: $breakpoint-desktop) {
+                    font-size: 1rem;
+                    padding-left: 5rem;
+                    padding-top: 5rem;
+                }
+
+                span:first-child {
+                    font-weight: 600;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        height: 5px;
+                        width: 5rem;
+                        background-color: #d50032;
+                        transform: rotate(-20deg);
+                        position: absolute;
+                        bottom: 40%;
+                        right: 10%;
+
+                        @media (max-width: $breakpoint-desktop) {
+                            height: 3px;
+                            width: 3rem;
+                        }
+                    }
+                }
+
+                span:last-child {
+                    font-weight: bold;
+                }
+            }
+
+            a {
+                margin-top: 5rem;
+                display: block;
+                width: fit-content;
+            }
+        }
+
+        &-third {
+            background-image: url('/assets/images/gamme_rituel_hero_desk.webp');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 5rem;
+
+            @media (max-width: $breakpoint-desktop) {
+                padding: 2rem;
+            }
+
+            &__tag {
+                position: absolute;
+                top: 8%;
+                right: 37%;
+                width: 6rem;
+                height: auto;
+
+                @media (max-width: $breakpoint-desktop) {
+                    width: 4rem;
+                    top: 40%;
+                    right: 45%;
+                }
+            }
+
+            h2 {
+                font-size: 2.3rem;
+                width: 30%;
+                font-family: "Sophillia", "serif";
+
+                @media (max-width: $breakpoint-desktop) {
+                    font-size: 1.5rem;
+                    width: 80%;
+                }
+            }
+
+            p {
+                font-size: 1.25rem;
+                width: 40%;
+                font-weight: bold;
+
+                @media (max-width: $breakpoint-desktop) {
+                    font-size: 1rem;
+                    width: 80%;
+                }
+            }
+
+            a {
+                margin-top: 5rem;
+                display: block;
+                width: fit-content;
+
+                @media (max-width: $breakpoint-desktop) {
+                    margin-top: 10rem;
+                }
+            }
+        }
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        color: gray;
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 3rem;
+        
+        &::after {
+            font-size: 1.5rem;
+        }
+    }
+
+    .swiper-button-next {
+        right: 0;
+        padding-right: 1rem;
+        padding-left: 0.5rem;
+    }
+
+    .swiper-button-prev {
+        left: 0;
+        padding-left: 1rem;
+        padding-right: 0.5rem;
+    }
+
+    .swiper-pagination-bullet {
+        background-color: lightgray;
+
+        &-active {
+            background-color: gray;
+        }
+    }
+
+}
+
+.products-selection {
+    max-width: $container;
+    margin: 0 auto;
+    padding: 0 5rem;
+    font-family: 'Lato', sans-serif;
+
+    h2 {
+        text-transform: uppercase;
+        font-weight: 200;
+        font-size: 1.75rem;
+        text-align: center;
+        position: relative;
+
+        strong {
+            font-weight: 600;
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            width: 4rem;
+            height: 2px;
+            background-color: black;
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    > p {
+        text-align: center;
+        width: 80%;
+        margin: 2rem auto 0 auto;
+
+        @media (max-width: $breakpoint-desktop) {
+            display: none;
+        }
+    }
+
+    &__products {
+        margin-top: 4rem;
+
+        &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+            &.swiper-slide {
+                height: auto;
+            }
+
+            &__image {
+                height: 13.75rem;
+                display: flex;
+                align-items: flex-end;
+                position: relative;
+
+                &-product {
+                    width: 80%;
+                    margin: 0 auto;
+                    display: block;
+                }
+
+                &-tag {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    height: 3rem;
+                    width: 3rem;
+                }
+
+                &-promotion {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    height: 3rem;
+                    width: 3rem;
+                    color: white;
+                    background-color: #d50032;
+                    border-radius: 100%;
+                    font-weight: bold;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 1rem;
+                }
+            }
+
+            &__infos {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+
+                h3 {
+                    font-size: 1rem;
+                    letter-spacing: 0.1rem;
+                }
+    
+                p {
+                    width: 80%;
+                    text-align: center;
+                }
+    
+                > span {
+                    font-size: 0.8rem;
+                    height: 0.7rem;
+                }
+    
+                &__prices {
+                    font-size: 1.5rem;
+                    font-weight: bold;
+    
+                    span:nth-child(2) {
+                        color: lightgray;
+                        font-weight: normal;
+                        text-decoration: line-through;
+                        font-size: 1rem;
+                    }
+                }
+            }
+
+            button {
+                width: 70%;
+                background-color: white;
+                border: 1px solid black;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 1rem;
+                padding: 0.5rem;
+                margin-top: 0.5rem;
+
+                &:hover {
+                    background-color: black;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: gray;
+}
+
+.products-pub {
+    max-width: $container;
+    margin: 5rem auto;
+    display: flex;
+    font-family: 'Lato', sans-serif;
+
+    @media (max-width: $breakpoint-desktop) {
+        flex-direction: column;;
+    }
+
+    &__item {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+
+        @media (max-width: $breakpoint-desktop) {
+            width: 100%;
+        }
+
+        &__image {
+            height: 14rem;
+
+            &-first {
+                background-image: url('/assets/images/kit_nomade_homepromo_tab.webp');
+                background-size: cover;
+                background-position: center;
+            }
+
+            &-second {
+                background-image: url('/assets/images/gamme_rituel_homepromo_tab.webp');
+                background-size: cover;
+                background-position: center;
+            }
+
+            
+            &-third {
+                background-image: url('/assets/images/infusion_ducasse_homepromo_tab.webp');
+                background-size: cover;
+                background-position: center;
+            }
+
+            
+            &-fourth {
+                background-image: url('/assets/images/offre_glace_homepromo_tab.webp');
+                background-size: cover;
+                background-position: center;
+            }
+        }
+
+        &__content {
+            padding: 2rem;
+
+            &-beige {
+                background-color: #f7e9d9;
+                color: black;
+
+                a {
+                    color: black;
+                    font-size: 1.3rem;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                p {
+                    font-size: 1.3rem;
+                }
+            }
+
+            &-rose {
+                background-color: #d7004d;
+                color: white;
+
+                a {
+                    color: white;
+                    font-size: 1.3rem;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                p {
+                    font-size: 1.3rem;
+                }
+            }
+
+            &-brown {
+                background-color: #7e5953;
+                color: white;
+
+                a {
+                    color: white;
+                    font-size: 1.3rem;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                p {
+                    font-size: 1.3rem;
+                }
+            }
+
+            &-peach {
+                background-color: #fc9f78;
+                color: white;
+
+                a {
+                    color: white;
+                    font-size: 1.3rem;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                p {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+}
+
+.tea-selector {
+    max-width: $container;
+    margin: 0 auto;
+
+    @media (max-width: $breakpoint-desktop) {
+        display: none;
+    }
+
+    h2 {
+        text-transform: uppercase;
+        font-weight: 200;
+        font-size: 1.75rem;
+        text-align: center;
+        position: relative;
+
+        strong {
+            font-weight: 600;
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            width: 4rem;
+            height: 2px;
+            background-color: black;
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    &__products {
+        padding: 0 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5rem;
+        margin: 3rem auto 0 auto;
+        
+        &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+
+            img {
+                width: 6.5rem;
+                height: auto;
+            }
+
+            span {
+                color: black;
+                font-weight: bold;
+                font-size: 1.125rem;
+            }
+        }
+    }
+}
+
+.newsletter {
+    max-width: $container;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    @media (max-width: $breakpoint-desktop) {
+        grid-template-columns: 1fr;
+    }
+
+    &__form {
+        background-color: $primary-green;
+        grid-column: 1/9;
+        padding: 2rem 3rem;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+
+        @media (max-width: $breakpoint-desktop) {
+            grid-column: 1;
+            padding: 2rem 1rem;
+        }
+
+        h2 {
+            font-size: 1.125rem;
+            text-align: center;
+
+            @media (max-width: $breakpoint-desktop) {
+                font-size: 0.950rem;
+            }
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+
+            input[type="email"], input[type="submit"] {
+                height: 2.375rem;
+            }
+
+            input[type="email"] {
+                width: 80%;
+                padding: 0 0.5rem;
+
+                @media (max-width: $breakpoint-desktop) {
+                    width: 70%;
+                    font-size: 0.750rem;
+                }
+            }
+
+            input[type="submit"] {
+                background-color: #e4002b;
+                color: white;
+                text-transform: uppercase;
+                border: none;
+                width: 20%;
+                font-weight: bold;
+
+                @media (max-width: $breakpoint-desktop) {
+                    width: 30%;
+                    font-size: 0.750rem;
+                }
+
+                &:hover {
+                    background-color: white;
+                    color: black;
+                }
+            }
+        }
+
+        p {
+            font-size: 0.750rem;
+            text-align: center;
+
+            a {
+                color: white;
+            }
+        }
+    }
+
+    &__networks {
+        grid-column: 9/13;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        @media (max-width: $breakpoint-desktop) {
+            grid-column: 1;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0.5rem 0rem 0.5rem;
+        }
+
+        &__item {
+            width: 50%;
+            height: 33%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @media (max-width: $breakpoint-desktop) {
+                width: 12%;
+            }
+
+            &-light {
+                background-color: #f9f9f9;
+
+                @media (max-width: $breakpoint-desktop) {
+                    background: none;
+                }
+            }
+
+            &-dark {
+                background-color: #eeeeee;
+
+                @media (max-width: $breakpoint-desktop) {
+                    background: none;
+                }
+            }
+
+            img {
+                opacity: 0.6;
+            }
+        }
+    }
+}

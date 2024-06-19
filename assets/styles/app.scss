@@ -7,9 +7,18 @@
 @import 'components/profil';
 @import 'components/resetPassword';
 
+@import 'pages/home.scss';
+
 @font-face {
     font-family: 'Lato';
     src: url('../fonts/Lato-Regular.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sophillia';
+    src: url('../fonts/Sophillia.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
