@@ -29,4 +29,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });   
     }
+
+    const header = document.querySelector('.header');
+    const fixedClass = 'header-fixed';
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 140) {
+            header.classList.add(fixedClass);
+        } else {
+            header.classList.remove(fixedClass);
+        }
+    });
 });

@@ -5,9 +5,17 @@
     gap: 1.5rem;
     position: relative;
     font-family: 'Lato', sans-serif;
+    background-color: white;
+    z-index: 100;
 
     @media (max-width: $breakpoint-desktop) {
         padding: 0.2rem 1rem;
+    }
+
+    &-fixed {
+        position: fixed;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     &__top {
