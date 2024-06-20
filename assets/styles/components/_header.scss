@@ -1,3 +1,30 @@
+.promo-bar {
+    width: 100%;
+    background-color: #9b090d;
+    color: white;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    position: relative;
+
+    p {
+        margin-bottom: 0;
+        font-size: 0.8rem;
+    }
+
+    &__close {
+        background: none;
+        border: none;
+        position: absolute;
+        right: 2%;
+        top: 7%;
+
+        img {
+            width: 0.8rem;
+            height: 0.8rem;
+        }
+    }
+}
+
 .header {
     padding: 2rem 0 0.2rem 0;
     display: flex;
@@ -16,6 +43,7 @@
         position: fixed;
         width: 100%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        top: 0;
     }
 
     &__top {

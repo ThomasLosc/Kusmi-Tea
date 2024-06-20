@@ -40,4 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove(fixedClass);
         }
     });
+
+    const promoBar = document.querySelector('.promo-bar');
+    const promoBarButton = document.querySelector('#btn-promo-close');
+
+    promoBarButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        promoBar.style.display = "none";
+    });
 });
