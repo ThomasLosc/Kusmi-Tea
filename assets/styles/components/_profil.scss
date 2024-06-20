@@ -1,5 +1,8 @@
-.w-80{
+.largeur-block{
   width: 80%;
+  @media (max-width: $breakpoint-desktop) {
+    width: 100%;
+  }
 }
 
 .container-fluid.profil {
@@ -77,7 +80,7 @@ justify-content: center;
   }
 
   @media (max-width: $breakpoint-desktop) {
-    font-size: medium;
+    font-size: small;
   }
 }
 
@@ -93,7 +96,7 @@ justify-content: center;
   font-family: 'Lato', sans-serif;
 
   @media (max-width: $breakpoint-desktop) {
-    font-size: medium;
+    font-size: small;
   }
 }
 
@@ -106,7 +109,7 @@ justify-content: center;
   font-family: 'Lato', sans-serif;
 
   @media (max-width: $breakpoint-desktop) {
-    font-size: medium;
+    font-size: small;
   }
 }
 
@@ -143,7 +146,7 @@ justify-content: center;
   }
 
   @media (max-width: $breakpoint-desktop) {
-    font-size: medium;
+    font-size: small;
   }
 }
 
@@ -156,6 +159,10 @@ justify-content: center;
   &.label-3 {
     font-size: 14px; // Exemple de taille de police, ajustez selon vos besoins
     line-height: 1.2; // Ajuste l'espacement entre les lignes
+  }
+
+  @media (max-width: $breakpoint-desktop) {
+    font-size: small;
   }
 }
 
@@ -202,8 +209,9 @@ img{
   color: #888;
 }
 
-.testdd{
-  color: #555;
-  background-color: green!important;
+h5{
+  @media (max-width: $breakpoint-desktop) {
+    font-size: small;
+  }
 }
 }

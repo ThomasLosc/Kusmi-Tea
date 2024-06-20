@@ -12,8 +12,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\AdresseType;
 
-
-
 class ProfilController extends AbstractController
 {
     #[Route('/profil', name: 'app_profil')]
@@ -75,7 +73,7 @@ class ProfilController extends AbstractController
             $entityManager->persist($adresse);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Vos informations ont bien été modifiées');
+            $this->addFlash('success', 'L\'adresse '. $adresse->getNomAdresse() .' a bien été ajoutée');
 
             return $this->redirectToRoute('app_profil');
         }
@@ -84,5 +82,55 @@ class ProfilController extends AbstractController
             'form' => $form->createView(),
             'adresse' => $adresse
         ]);
+    }
+
+    #[Route('/profil/adresse/liste', name: 'app_profil_adresse_liste')]
+    public function listeAdresse(Request $request, AdresseRepository $adresseRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $adresses = $adresseRepository->findBy(['user' => $this->getUser()]);
+
+        return $this->render('profil/listeAdresse.html.twig', [
+            'adresses' => $adresses
+        ]);
+    }
+
+    #[Route('/profil/edit/adresse/{id}', name: 'app_profil_adresse_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Adresse $adresse, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(AdresseType::class, $adresse);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Les informations d l\'adresse ont bien été modifiées');
+            return $this->redirectToRoute('app_profil_adresse_liste');
+        }
+
+        return $this->render('profil/editAdresse.html.twig', [
+            'product' => $adresse,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/profil/adresse/delete/{id}', name: 'app_profil_adresse_delete')]
+    public function deleteAdresse(Adresse $adresse, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+        
+        if ($this->isCsrfTokenValid('delete' . $adresse->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($adresse);
+            $entityManager->flush();
+        }
+
+        $this->addFlash('success', 'L\'adresse a bien été supprimée');
+
+        return $this->redirectToRoute('app_profil_adresse_liste', [], Response::HTTP_SEE_OTHER);
     }
 }

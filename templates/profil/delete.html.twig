@@ -1,0 +1,24 @@
+<button type="button" class="a-btn-delete border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ id }}">
+    <i class="bi bi-x-circle text-danger"></i>
+</button>
+
+<div class="modal fade" id="deleteModal-{{ id }}" tabindex="-1" aria-labelledby="deleteModalLabel-{{ id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 50%;">
+        <div class="modal-content bg-light text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel-{{ id }}">Confirmer la suppression</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light text-dark">
+                Voulez-vous vraiment supprimer l'adresse <span class="fw-bold">{{ adresse.nomAdresse }}</span> ?
+            </div>
+            <div class="modal-footer bg-light text-dark">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANNULER</button>
+                <form method="post" action="{{ path('app_profil_adresse_delete', {'id': id}) }}" class="d-inline">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ id) }}">
+                    <button type="submit" class="btn btn-dark">OUI</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
