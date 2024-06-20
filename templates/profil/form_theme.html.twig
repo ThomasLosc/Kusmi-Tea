@@ -1,0 +1,8 @@
+{% block checkbox_widget %}
+    <div class="form-check">
+        <input class="fs-3" type="checkbox" {{ block('widget_attributes') }}{% if value is not empty %} {% endif %}>
+        <label class="form-check-label fs-5 fw-bold" for="{{ id }}">
+            Rejoignez le KusmiKlub
+        </label>
+    </div>
+{% endblock %}
