@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau produit{% endblock %}
+
+{% block body %}
+    <div class="container my-4">
+        <div class="row mb-4">
+            <div class="col-12">
+                {% for label, flashes in app.session.flashbag.all %}
+                    {% for flash in flashes %}
+                        {% if ( label == 'success' ) %}
+                            <div class="alert alert-success" role="alert"><i class="fas fa-check"></i>
+                                {{ flash }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-md-2 col-md-8 border bg-light me-4">
+                <div class="p-3">
+                    {{ form_start(form) }}
+                    <h5 class="mt-3">Créer un produit</h5>
+                    <hr class="mb-3 mt-3">
+                    <label for="form_name" class="mb-2"><span class="text-danger">*</span> Nom du produit</label>
+                    {{ form_widget(form.name, {'attr': {'class': 'input-design'}}) }}<br>
+
+                    <label for="form_price" class="mb-2 mt-3"><span class="text-danger">*</span> Prix du produit</label>
+                    {{ form_widget(form.price, {'attr': {'class': 'input-design'}}) }}<br>
+
+                    {{ form_row(form.category) }}
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                    <button class="mt-5" type="submit" style="background-color: #000;border: none;color: #fff;padding: 15px;width: 100%;">
+                        CRÉER
+                    </button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

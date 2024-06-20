@@ -10,18 +10,17 @@
                 <div class="image-promo">
                     -20%
                 </div>
-                <img src="{{ asset('build/images/product/BUNDLEBLEUEXOSUM.png') }}">
+                <img src="{{ qr_code_path('http://127.0.0.1:8000/product/' ~ product.uuid, 'custom') }}" alt="" style="border-radius: 15px" width="250px">
             </div>
         </div>
         <div class="offset-md-1 col-md-4">
             <div class="price-card">
                 <div class="top-price-card">
                     <div class="product-card-name">
-                        Ensemble à thé glacé<br>
-                        AquaExotica, AquaSummer et une carafe bleue T.TOTEM
+                        {{ product.name }}
                     </div>
                     <div class="product-card-price">
-                        39,99€
+                        {{ product.price }}€
                     </div>
                 </div>
                 <div class="promo-product-card">
