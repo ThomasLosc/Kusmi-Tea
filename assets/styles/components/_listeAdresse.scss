@@ -1,0 +1,261 @@
+.container-fluid.listAdresse {
+    background-color: #ECEBEB;
+    padding: 20px 0;
+  
+    // Flexbox to center the tabs
+    display: flex;
+    justify-content: center;
+  
+    h1{
+      color: #000;
+      padding: 10px 30px;
+      border: none;
+      background: transparent;
+      font-family: 'Lato', sans-serif;
+  
+      &.active {
+        color: #000; // Black color for active tab
+        border-bottom: 2px solid #000;
+      }
+  
+      @media (max-width: $breakpoint-desktop) {
+        font-size: medium;
+      }
+    }
+  
+    .flash-message {
+      position: relative;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 30px;
+      font-size: large;
+      border: 1px solid #000;
+      background: transparent;
+      font-family: 'Lato', sans-serif;
+    
+      @media (max-width: $breakpoint-desktop) {
+        font-size: medium;
+      }
+    
+      .close-button {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+      }
+    }
+    
+    
+  }
+  
+  .container-fluid.listAdresse-id {
+  background-color: #ECEBEB;
+  padding: 20px 0;
+  
+  // Flexbox to center the tabs
+  display: flex;
+  justify-content: center;
+
+  .largeur-block{
+    width: 80%;
+    @media (max-width: $breakpoint-desktop) {
+      width: 100%;
+    }
+  }
+  
+  .a-btn{
+    color: #000;
+    padding: 10px 30px;
+    font-size: medium;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+  
+    &:hover {
+      color: 000;
+      text-decoration: underline;
+    }
+  
+    @media (max-width: $breakpoint-desktop) {
+      font-size: small;
+    }
+  }
+  
+  .label {
+    color: #000;
+    font-weight: bold;
+    margin-top: 0; /* Ajusté pour réduire l'espace au-dessus */
+    margin-bottom: 2px; /* Ajusté pour réduire l'espace en dessous */
+    font-size: large;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+  
+    @media (max-width: $breakpoint-desktop) {
+      font-size: small;
+    }
+  }
+
+  .btn-connexion{
+    width: 100%;
+    padding: 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+
+    // Hover effect
+    &:hover {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #000;
+      }
+}
+  
+  .label-2 {
+    color: #000;
+    font-size: medium;
+    margin-top: 0; /* Ajusté pour réduire l'espace au-dessus */
+    border: none;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+  
+    @media (max-width: $breakpoint-desktop) {
+      font-size: small;
+    }
+  }
+  
+  .btn-ajout{
+      width: 80%;
+      padding: 15px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      text-decoration: none;
+      text-align: center;
+  
+      // Hover effect
+      &:hover {
+          background-color: #fff;
+          color: #000;
+          border: 1px solid #000;
+        }
+
+        @media (max-width: $breakpoint-desktop) {
+          width: 100%;
+        }
+  }
+  
+  .a-carte{
+    color: #000;
+    font-weight: bold;
+    padding: 10px 30px;
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+  
+    &:hover {
+      color: 000;
+      text-decoration: underline;
+    }
+  
+    @media (max-width: $breakpoint-desktop) {
+      font-size: small;
+    }
+  }
+  
+  .adresse-details {
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  
+    &.label-3 {
+      font-size: 14px; // Exemple de taille de police, ajustez selon vos besoins
+      line-height: 1.2; // Ajuste l'espacement entre les lignes
+    }
+  
+    @media (max-width: $breakpoint-desktop) {
+      font-size: small;
+    }
+  }
+  
+  img{
+    width: 100%;
+    height: auto;
+  }
+  
+  .btn-club{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    font-family: Lato, sans-serif;
+    font-size: .75rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: .025em;
+    padding: 0 1.25rem;
+    border: .0625rem solid #fff;
+    background-color: #4a4a4a;
+    color: #fff;
+  
+    // Hover effect
+    &:hover {
+        background-color: #fff;
+        color: #000;
+        text-decoration: none;
+        border: 1px solid #000;
+      }
+  }
+  
+  .input-design{
+    width: 100%;
+    border: 1px solid grey;
+    padding: 10px;
+  }
+  
+  .btn-reesayer{
+    width: 100%;
+    color: #888;
+  }
+  
+  h5{
+    @media (max-width: $breakpoint-desktop) {
+      font-size: small;
+    }
+  }
+
+  .a-btn-delete{
+    display: inline-block;
+    margin-right: 10px;
+    color: #000;
+    padding: 10px 30px;
+    font-size: medium;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+  
+    &:hover {
+      color: 000;
+      text-decoration: underline;
+    }
+  
+    @media (max-width: $breakpoint-desktop) {
+      font-size: small;
+    }
+  }
+
+  .d-inline {
+      display: inline-block;
+  }
+}

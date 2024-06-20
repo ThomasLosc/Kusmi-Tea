@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carnet d'adresses{% endblock %}
+
+{% block body %}
+<div class="container-fluid listAdresse">
+    <h1 class="text-center active">CARNET D’ADRESSES</h1>
+</div>
+
+{% for message in app.flashes('success') %}
+    <div class="container-fluid listAdresse">
+            <div class="alert" role="alert">
+                <div class="flash-message d-flex align-items-center justify-content-center">
+                <strong class="me-3">{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="container-fluid listAdresse-id">
+    <div class="row mx-auto largeur-block">
+        <div class="col-md-12">
+        {% for adresse in adresses %}
+            <div class="border bg-light mt-3">
+                <div class="p-4 d-flex justify-content-center flex-column">
+                    <div class="d-flex align-items-center mt-3 justify-content-between">
+                        <h5>{{ adresse.adresse }} ({{ adresse.nomAdresse }})</h5>
+                        <div class="d-inline">
+                            <a class="a-btn" href="{{ path('app_profil_adresse_edit', {'id': adresse.id }) }}">Modifier</a>
+                            {{ include('profil/delete.html.twig', { 'id': adresse.id }) }}
+                        </div>
+                    </div>
+                    <hr class="mb-3 mt-3">
+                    <div class="adresse-details mt-3">
+                        <p class="label-3">{{ adresse.adresse }}</p>
+                        <p class="label-3">{{ adresse.prenom }} {{ adresse.nom }}</p>
+                        <p class="label-3">{{ adresse.ville }}, {{ adresse.pays }} {{ adresse.codePostal }}</p>
+                        <p class="label-3">{{ adresse.telephone }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid listAdresse-id flex-column d-flex align-items-center">
+    <a class="btn-ajout" href="{{ path('app_profil_adresse') }}">AJOUTER</a>
+    <a class="a-btn mt-3 fs-5" href="{{ path('app_profil') }}">Retour à mon compte</a>
+</div>
+{% endblock %}
