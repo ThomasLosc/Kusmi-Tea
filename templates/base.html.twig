@@ -22,7 +22,11 @@
         {% endblock %}
     </head>
     <body>
-        {{ include('header/index.html.twig') }}
+        {% if isCartPage is defined and isCartPage %}
+            {% include 'header/cart_header.html.twig' %}
+        {% else %}
+            {% include 'header/index.html.twig' %}
+        {% endif %}
         {% block body %}{% endblock %}
         {{ include('footer/index.html.twig') }}
     </body>

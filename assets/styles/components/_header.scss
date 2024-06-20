@@ -311,3 +311,48 @@
         }
     }
 }
+
+.cart-header {
+    width: 100%;
+    max-width: $container;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+
+    @media (max-width: $breakpoint-desktop) {
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    &__reinsurance {
+        display: flex;
+        gap: 1rem;
+        padding: 0.3rem 0 0.3rem 1rem;
+        border-left: 1px solid #5a5a5a;
+
+        @media (max-width: $breakpoint-desktop) {
+            border: none;
+        }
+
+        &__item {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            @media (max-width: $breakpoint-desktop) {
+
+                &:first-child {
+                    text-transform: uppercase;
+                    font-size: 0.6rem;
+                }
+
+                &:not(:first-child) {
+                    display: none;
+                }
+            }
+        }
+    }
+}

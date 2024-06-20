@@ -1,0 +1,64 @@
+.empty-cart {
+    max-width: $container;
+    margin: 0 auto;
+
+    &__head {
+        text-align: center;
+        margin-top: 4rem;
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 200;
+        }
+
+        p {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.750rem;
+        }
+    }
+
+    &__content {
+        background-color: #f5f5f5;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 2rem 0 2rem;
+
+        @media (max-width: $breakpoint-desktop) {
+            padding: 2rem 0.5rem;
+            margin: 1rem 1rem 0 1rem;
+        }
+
+        > a {
+            color: white;
+            background-color: black;
+            border: 1px solid black;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+
+            @media (max-width: $breakpoint-desktop) {
+                font-size: 0.750rem;
+            }
+
+            &:hover {
+                color: black;
+                background-color: white;
+            }
+        }
+
+        p {
+            font-weight: 200;
+            text-align: center;
+
+            a {
+                color: black;
+            }
+        }
+    }
+}
