@@ -56,4 +56,38 @@ class ProductController extends AbstractController
             'product' => $product
         ]);
     }
+
+    #[Route('/product-list', name: 'app_product_list')]
+    public function list(ProductRepository $productRepository): Response
+    {
+        $products = $productRepository->findAll();
+
+        return $this->render('product/list.html.twig', [
+            'products' => $products
+        ]);
+    }
+
+    #[Route('/product/{uuid}/edit', name: 'app_product_edit')]
+    public function edit($uuid, Request $request, EntityManagerInterface $entityManager, ProductRepository $productRepository): Response
+    {
+        $product = $productRepository->findOneBy(['uuid' => $uuid]);
+        $form = $this->createForm(ProductType::class, $product);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $product = $form->getData();
+            $entityManager->persist($product);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Le produit a bien été modifié');
+
+            return $this->redirectToRoute('app_product_list');
+        }
+
+        return $this->render('product/edit.html.twig', [
+            'controller_name' => 'ProductController',
+            'form' => $form->createView()
+        ]);
+    }
 }
