@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4" style="background-color: #fcebd2">
+    <div class="row w-75 mx-auto">
+        <div class="col-md-7">
+            <div class="product-image-container d-flex justify-content-center">
+                <div class="image-promo">
+                    -20%
+                </div>
+                <img src="{{ asset('build/images/product/BUNDLEBLEUEXOSUM.png') }}">
+            </div>
+        </div>
+        <div class="offset-md-1 col-md-4">
+            <div class="price-card">
+                <div class="top-price-card">
+                    <div class="product-card-name">
+                        Ensemble à thé glacé<br>
+                        AquaExotica, AquaSummer et une carafe bleue T.TOTEM
+                    </div>
+                    <div class="product-card-price">
+                        39,99€
+                    </div>
+                </div>
+                <div class="promo-product-card">
+                    Un ensemble à thé glacé à 39,90€ seulement*
+                </div>
+                <a class="btn btn-add-to-cart">
+                    AJOUTER
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
