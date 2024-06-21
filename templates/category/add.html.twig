@@ -30,6 +30,9 @@
                     <label for="form_name" class="mb-2"><span class="text-danger">*</span> Nom de la catégorie</label>
                     {{ form_widget(form.name, {'attr': {'class': 'input-design'}}) }}<br>
 
+                    <label for="form_imageFile" class="mb-2 mt-3"><span class="text-danger">*</span> Image de la catégorie</label>
+                    {{ form_widget(form.imageFile, {'attr': {'class': 'input-design'}}) }}<br>
+
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
                     >

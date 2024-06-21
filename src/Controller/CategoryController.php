@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/category/add', name: 'category_add')]
+    #[Route('/add/category', name: 'category_add')]
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $category = new Category();
@@ -31,7 +31,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash('success', 'La catégorie a bien été ajoutée');
 
-            return $this->redirectToRoute('category_add');
+            return $this->redirectToRoute('category_list');
         }
 
 
@@ -41,7 +41,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/category/edit/{id}', name: 'category_edit')]
+    #[Route('/edit/category/{id}', name: 'category_edit')]
     public function edit($id, Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository->find($id);
@@ -67,7 +67,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/category/list', name: 'category_list')]
+    #[Route('/list/category', name: 'category_list')]
     public function list(CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAll();
@@ -75,6 +75,16 @@ class CategoryController extends AbstractController
         return $this->render('category/list.html.twig', [
             'controller_name' => 'CategoryController',
             'categories' => $categories
+        ]);
+    }
+
+    #[Route('/category/{slug}', name: 'category_show')]
+    public function show($slug, CategoryRepository $categoryRepository): Response
+    {
+        $category = $categoryRepository->findOneBy(['slug' => $slug]);
+
+        return $this->render('category/show.html.twig', [
+            'category' => $category
         ]);
     }
 }
