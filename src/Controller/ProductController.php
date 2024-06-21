@@ -7,6 +7,7 @@ use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -89,5 +90,38 @@ class ProductController extends AbstractController
             'controller_name' => 'ProductController',
             'form' => $form->createView()
         ]);
+    }
+
+    #[Route('/search', name: 'product_search', methods: ['GET'])]
+    public function search(Request $request, ProductRepository $productRepository): JsonResponse
+    {
+        $query = $request->query->get('q');
+
+        if (!$query) {
+            return new JsonResponse(['error' => 'Query parameter is missing'], 400);
+        }
+
+        $products = $productRepository->createQueryBuilder('p')
+            ->where('p.name LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->getQuery()
+            ->getResult();
+
+        if (empty($products)) {
+            return new JsonResponse(['error' => 'No products found'], 404);
+        }
+
+        $response = [];
+        foreach ($products as $product) {
+            $response[] = [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'price' => $product->getPrice(),
+                'image' => $product->getImageName(),
+                'uuid' => $product->getUuid(),
+            ];
+        }
+
+        return new JsonResponse($response);
     }
 }

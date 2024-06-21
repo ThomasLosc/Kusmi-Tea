@@ -1,0 +1,64 @@
+<!-- templates/_search.html.twig -->
+<div class="search-container" style="width: 100%">
+    <input type="text" id="search-input" placeholder="Que recherchez vous ?" style="width: 100%;color: #5a5a5a; border: .0625rem solid #c9c9c9;-webkit-appearance: none;background-color: #fff;font-size: .75rem;padding: .75rem 1.25rem !important;">
+    <div id="search-results" class="hidden"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value;
+
+            if (query.length === 0) {
+                searchResults.innerHTML = '';
+                searchResults.classList.add('hidden');
+                return;
+            }
+
+            fetch(`/search?q=${query}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    searchResults.innerHTML = '';
+                    searchResults.classList.remove('hidden');
+
+                    if (data.error) {
+                        searchResults.innerHTML = `<div class="no-results">${data.error}</div>`;
+                        return;
+                    }
+
+                    if (data.length === 0) {
+                        searchResults.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
+                    } else {
+                        data.forEach(product => {
+                            const productElement = document.createElement('a');
+                            productElement.href = `/product/${product.uuid}`;
+                            productElement.classList.add('product');
+                            productElement.innerHTML = `
+                            <img src="../images/product/${product.image}" alt="${product.name}">
+                            <span style="color: black;text-decoration: none">${product.name}</span>
+                        `;
+                            searchResults.appendChild(productElement);
+                        });
+                    }
+                })
+                .catch(error => {
+                    searchResults.innerHTML = `<div class="no-results">Erreur: ${error.message}</div>`;
+                    searchResults.classList.remove('hidden');
+                });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+                searchResults.classList.add('hidden');
+            }
+        });
+    });
+</script>
