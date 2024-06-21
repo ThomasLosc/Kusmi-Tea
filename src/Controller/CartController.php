@@ -29,11 +29,11 @@ class CartController extends AbstractController
     }
 
     #[Route('/add-to-cart/{id}/{quantity}', name: 'add-to-cart')]
-    public function addToCart(CartService $cartService, int $id, int $quantity): Response
+    public function addToCart(CartService $cartService, int $id, int $quantity): JsonResponse
     {
         $cartService->addToCart($id, $quantity);
-
-        return $this->redirectToRoute('app_cart');
+        
+        return $this->json(['status' => 'success', 'message' => 'Produit ajouté au panier']);
     }
 
     #[Route('/remove-from-cart/{id}', name: 'remove-from-cart')]
