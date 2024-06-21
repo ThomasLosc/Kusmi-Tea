@@ -32,10 +32,10 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
+    
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, Authenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
-
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
@@ -45,7 +45,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -56,7 +56,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
+            // Generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('noreply@kusmitea.fr', 'Kusmi Tea'))
@@ -64,19 +64,24 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
 
+            // Authenticate the user
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
                 $request
             );
         }
+        elseif ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('error', 'Les mots de passe ne correspondent pas ou l\'email existe déjà.');
+            return $this->redirectToRoute('app_register');
+        }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
+    
 
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
