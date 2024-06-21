@@ -57,6 +57,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Adresse::class, mappedBy: 'user')]
     private Collection $adresses;
 
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $kusmiklub = false;
+
     public function __construct()
     {
         $this->adresses = new ArrayCollection();
@@ -230,6 +233,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $adress->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isKusmiklub(): ?bool
+    {
+        return $this->kusmiklub;
+    }
+
+    public function setKusmiklub(bool $kusmiklub): static
+    {
+        $this->kusmiklub = $kusmiklub;
 
         return $this;
     }

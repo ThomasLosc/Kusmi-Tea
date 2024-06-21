@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kusmi Klub{% endblock %}
+
+{% block body %}
+<div class="container-fluid kusmiklub">
+    <div class="d-flex align-items-center justify-content-center flex-column">
+        {% if app.user.kusmiklub == true %}
+        <h3 class="mt-5">Bienvenue dans votre espace fidélité</h3>
+        <h3 class="mt-5">€</h3>
+        <h5 class="mt-2">total des bons d'achat actifs</h5>
+        <div class="bons-achat mt-5">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#actifs">Bon.s d'achat actifs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#expires">Expiré.s</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#utilises">Utilisé.s</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane container active" id="actifs">
+                    <p>Vous n'avez aucun bon d'achat disponible</p>
+                </div>
+                <div class="tab-pane container fade" id="expires">
+                    <p>Aucun bon d'achat expiré</p>
+                </div>
+                <div class="tab-pane container fade" id="utilises">
+                    <p>Aucun bon d'achat utilisé</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="points-fidelite mt-5">
+            <div class="row">
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Points Fidélité: 0</h5>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="70"></div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                            <img class="icon mr-3" src="{{ asset('build/images/kusmi-1.svg') }}" alt="Voucher">
+                            <p>Plus que <strong>70 points</strong> avant votre prochain bon de <strong>5 euros</strong></p>
+                            <p>1€ = 1 point de fidélité</p>
+                            <p>70 points = 5€ de bon d’achat</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Mon coffret offert dès 300 pts cumulés</h5>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="300"></div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                            <img class="icon mr-3" src="{{ asset('build/images/kusmi-4.svg') }}" alt="Voucher">
+                            <p>Plus que <strong>300 points</strong> avant d’obtenir votre coffret offert</p>
+                            <p>0 / 300 pts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <img class="image-klub mt-3" src="{{ asset('build/images/KusmiKlubb.webp') }}" alt="Kusmi Klub">
+        <h4 class="mt-5">1€ DÉPENSÉ = 1 POINT</h4>
+        <h4>70 POINTS = UN BON D’ACHAT DE 5€</h4>
+        <img class="image-klub mt-5" src="{{ asset('build/images/kusmiklubLogo.svg') }}" alt="Kusmi Klub Logo">
+        
+        <div class="row d-flex align-items-center justify-content-center text-center me-5 mt-5">
+            <div class="col-12 col-md-5 mb-4 d-flex align-items-center me-5">
+                <img class="icon mr-3" src="{{ asset('build/images/kusmi-1.svg') }}" alt="Voucher">
+                <div>
+                    <h5>Des bons d’achat</h5>
+                    <p>À chaque achat, 1€ = 1 point</p> 
+                    <p>70 points = 1 bon d’achat de 5€</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-5 mb-4 d-flex align-items-center mt-2">
+                <img class="icon mr-3" src="{{ asset('build/images/kusmi-2.svg') }}" alt="Private Sales">
+                <div>
+                    <h5>Des ventes privées</h5>
+                    <p>Bénéficiez de remises exceptionnelles plusieurs fois par an</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-5 mb-4 d-flex align-items-center me-5 mt-2">
+                <img class="icon mr-3" src="{{ asset('build/images/kusmi-3.svg') }}" alt="Birthday">
+                <div>
+                    <h5>Une surprise offerte pour votre anniversaire</h5>
+                </div>
+            </div>
+            <div class="col-12 col-md-5 mb-4 d-flex align-items-center mt-2">
+                <img class="icon mr-3" src="{{ asset('build/images/kusmi-4.svg') }}" alt="Premium">
+                <div>
+                    <h5>Un avantage premium</h5>
+                    <p>Un coffret offert dès 300€ dépensés dans l’année</p>
+                </div>
+            </div>
+        </div>
+        <a href="{{ path('app_kusmi_klub') }}" class="btn-club mt-5 fs-5">EN SAVOIR PLUS...</a>
+    </div>
+</div>
+{% if app.user.kusmiklub != true %}
+<div class="container-fluid kusmiklub-2">
+    {{ form_start(form) }}
+        {{ form_row(form.kusmiklub) }}
+        <span class="mdp-size mt-2">Je souhaite rejoindre gratuitement le programme de fidélité KusmiKlub pour profiter d'avantages exclusifs. En cochant cette case, j'accepte les conditions générales du programme et j'accepte de recevoir les offres commerciales et les actualités de Kusmi Tea par email conformément à la politique de confidentialité.</span>
+    
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <a href="{{ path('app_profil') }}" class="mt-5 btn-club">
+                    ANNULER
+                </a>
+            </div>
+            <div class="col-12 col-md-6">
+                <button class="mt-5 btn-kusmi" type="submit">
+                    ENREGISTRER
+                </button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/js/profil.js') }}"></script>
+{% endblock %}
+
+{% form_theme form 'profil/form_theme.html.twig' %}

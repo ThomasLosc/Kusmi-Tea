@@ -1,0 +1,156 @@
+.kusmiklub {
+    background-color: #fff;
+    padding: 20px 0;
+    width: 80%;
+    margin: 0 auto;
+
+    .image-klub {
+        width: 30%;
+
+        @media (max-width: 992px) {
+            width: 75%;
+        }
+    }
+
+    h3, h4, h5 {
+        color: #4a4a4a;
+        font-family: 'Lato', sans-serif;
+    }
+
+    .icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .row {
+        width: 100%;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .mr-3 {
+        margin-right: 1rem !important;
+    }
+
+    .btn-club {
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        font-family: Lato, sans-serif;
+        height: 2.375rem;
+        line-height: 2.375rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        letter-spacing: .025em;
+        padding: 0 1.25rem;
+        border: .0625rem solid #fff;
+        background-color: #4a4a4a;
+        color: #fff;
+      
+        &:hover {
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            border: 1px solid #000;
+        }
+    }
+  
+    .bons-achat {
+        width: 100%;
+        margin-top: 20px;
+
+        .nav-tabs {
+            border-bottom: 1px solid #ddd;
+
+            .nav-item {
+                margin-bottom: -1px;
+                .nav-link {
+                    border: 1px solid transparent;
+                    border-top-left-radius: .25rem;
+                    border-top-right-radius: .25rem;
+                    &:hover {
+                        border-color: #ddd #ddd #fff;
+                    }
+                }
+            }
+
+            .nav-link.active {
+                color: #495057;
+                background-color: #fff;
+                border-color: #ddd #ddd #fff;
+            }
+        }
+
+        .tab-content {
+            .tab-pane {
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-top: 0;
+            }
+        }
+    }
+
+    .points-fidelite {
+        width: 100%;
+        margin-top: 20px;
+
+        .card {
+            .card-body {
+                h5 {
+                    font-weight: bold;
+                }
+                .progress {
+                    height: 20px;
+                    .progress-bar {
+                        background-color: #FFD700; // gold color
+                    }
+                }
+            }
+        }
+    }
+}
+
+.kusmiklub-2 {
+    background-color: #fff;
+    padding: 20px 0;
+    width: 80%;
+    margin: 0 auto;
+
+    .btn-club {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        padding: 15px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        border: .0625rem solid #fff;
+        background-color: #4a4a4a;
+        color: #fff;
+      
+        &:hover {
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            border: 1px solid #000;
+        }
+    }
+
+    .btn-kusmi {
+        width: 100%;
+        padding: 15px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+  
+        &:hover {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+        }
+    }
+}

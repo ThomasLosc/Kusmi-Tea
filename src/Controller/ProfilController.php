@@ -8,9 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ProfilType;
+use App\Form\KusmiKlubType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\AdresseType;
+
 
 class ProfilController extends AbstractController
 {
@@ -28,6 +30,33 @@ class ProfilController extends AbstractController
         return $this->render('profil/index.html.twig', [
             'user' => $user,
             'adresses' => $adresses
+        ]);
+    }
+
+    #[Route('/profil/kusmiKlub', name: 'app_kusmi_klub')]
+    public function kusmiClub(AdresseRepository $adresseRepository, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(KusmiKlubType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Vous avez bien rejoint le KusmiKlub');
+
+            return $this->redirectToRoute('app_profil');
+        }
+
+        return $this->render('profil/kusmiklub.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
         ]);
     }
 
