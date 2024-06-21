@@ -21,7 +21,7 @@
             fetch(`/search?q=${query}`)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                        throw new Error('Aucun produit trouvé.');
                     }
                     return response.json();
                 })
@@ -50,7 +50,7 @@
                     }
                 })
                 .catch(error => {
-                    searchResults.innerHTML = `<div class="no-results">Erreur: ${error.message}</div>`;
+                    searchResults.innerHTML = `<div class="no-results">${error.message}</div>`;
                     searchResults.classList.remove('hidden');
                 });
         });
