@@ -1,23 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% block title %}{{ product.name }} - Kusmi Tea{% endblock %}
 
 {% block body %}
+<div class="product__add-to-cart__message">
+    <p>Produit ajouté au panier</p>
+</div>
 <div class="container-fluid py-4" style="background-color: #fcebd2">
     <div class="row w-75 mx-auto">
         <div class="col-md-7">
-            <div class="product-image-container d-flex justify-content-center">
+            <div class="product-image-container d-flex justify-content-center mt-4">
                 <div class="image-promo">
                     -20%
                 </div>
-                <img src="{{ qr_code_path('http://127.0.0.1:8000/product/' ~ product.uuid, 'custom') }}" alt="" style="border-radius: 15px" width="250px">
+                <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}">
             </div>
         </div>
         <div class="offset-md-1 col-md-4">
             <div class="price-card">
                 <div class="top-price-card">
-                    <div class="product-card-name">
-                        {{ product.name }}
+                    <div class="product-card-left">
+                        <div class="product-card-name">
+                            {{ product.name }}
+                        </div>
+                        <div class="product-card-description">
+                            {{ product.description }}
+                        </div>
+                        <div class="product-card-weight fw-bold">
+                            {{ product.weight }}
+                        </div>
                     </div>
                     <div class="product-card-price">
                         {{ product.price }}€
@@ -26,10 +37,17 @@
                 <div class="promo-product-card">
                     Un ensemble à thé glacé à 39,90€ seulement*
                 </div>
-                <a href="{{ path('add-to-cart', { 'id': product.id, 'quantity': 1 }) }}" class="btn btn-add-to-cart">
+                <a href="" class="btn btn-add-to-cart" data-product-id="{{ product.id }}" data-quantity="1">
                     AJOUTER
                 </a>
             </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ qr_code_path('http://127.0.0.1:8000/product/' ~ product.uuid, 'custom') }}" alt="" style="border-radius: 15px" width="250px">
         </div>
     </div>
 </div>

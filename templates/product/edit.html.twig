@@ -31,11 +31,23 @@
                     <label for="form_name" class="mb-2"><span class="text-danger">*</span> Nom du produit</label>
                     {{ form_widget(form.name, {'attr': {'class': 'input-design'}}) }}<br>
 
+                    <label for="form_description" class="mb-2 mt-3"><span class="text-danger">*</span> Description du produit</label>
+                    {{ form_widget(form.description, {'attr': {'class': 'input-design'}}) }}<br>
+
+                    <label for="form_weight" class="mb-2 mt-3"><span class="text-danger">*</span> Poids du produit</label>
+                    {{ form_widget(form.weight, {'attr': {'class': 'input-design'}}) }}<br>
+
                     <label for="form_price" class="mb-2 mt-3"><span class="text-danger">*</span> Prix du produit</label>
                     {{ form_widget(form.price, {'attr': {'class': 'input-design'}}) }}<br>
 
                     <label for="form_category" class="mb-2 mt-3"><span class="text-danger">*</span> Catégorie du produit</label>
                     {{ form_widget(form.category, {'attr': {'class': 'input-design'}}) }}<br>
+
+                    <label for="form_isNew" class="mb-2 mt-3"><span class="text-danger">*</span> Nouveau produit ?</label>
+                    {{ form_widget(form.isNew, {'attr': {'class': 'input-design'}}) }}<br>
+
+                    <label for="form_imageFile" class="mb-2 mt-3"><span class="text-danger">*</span> Image du produit</label>
+                    {{ form_widget(form.imageFile, {'attr': {'class': 'input-design'}}) }}<br>
 
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"

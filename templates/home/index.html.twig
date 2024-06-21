@@ -129,26 +129,12 @@
 <section class="tea-selector">
     <h2><strong>Choisissez</strong> votre type de thé</h2>
     <div class="tea-selector__products">
-        <a href="" class="tea-selector__products__item">
-            <img src={{ asset('build/images/tea-type-the_vert.webp') }} alt="Thé vert" />
-            <span>Thé vert</span>
-        </a>
-        <a href="" class="tea-selector__products__item">
-            <img src={{ asset('build/images/tea-type-the_noir.webp') }} alt="Thé noir" />
-            <span>Thé noir</span>
-        </a>
-        <a href="" class="tea-selector__products__item">
-            <img src={{ asset('build/images/tea-type-the_blanc.webp') }} alt="Thé blanc" />
-            <span>Thé blanc</span>
-        </a>
-        <a href="" class="tea-selector__products__item">
-            <img src={{ asset('build/images/tea-type-infusion.webp') }} alt="Infusions et tisanes" />
-            <span>Infusions et tisanes</span>
-        </a>
-        <a href="" class="tea-selector__products__item">
-            <img src={{ asset('build/images/tea-type-rooibos.webp') }} alt="Rooibos" />
-            <span>Rooibos</span>
-        </a>
+        {% for category in categories %}
+            <a href="{{ path('category_show', {'slug': category.slug}) }}" class="tea-selector__products__item">
+                <img src="{{ vich_uploader_asset(category, 'imageFile') }}" alt="{{ category.name }}" />
+                <span>{{ category.name }}</span>
+            </a>
+        {% endfor %}
     </div>
 </section>
 

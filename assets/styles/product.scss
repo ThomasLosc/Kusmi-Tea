@@ -76,3 +76,24 @@
     border: 1px solid black;
   }
 }
+
+.product {
+  &__add-to-cart {
+    &__message {
+      position: fixed;
+      padding: 1rem 3rem;
+      display: none;
+      background-color: white;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 20;
+      font-weight: bold;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

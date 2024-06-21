@@ -28,7 +28,7 @@
         <div class="cart__content">
             <div class="cart__content__products">
                 {% for item in cartContent %}
-                    <div class="cart__content__products__item">
+                    <div class="cart__content__products__item" data-product-id={{ item.product.id }}>
                         <a href="{{ path('remove-from-cart', { 'id': item.product.id }) }}" class="cart__content__products__item__remove">
                             <img src="{{ asset('build/images/icon-close.svg') }}" alt="Supprimer" />
                         </a>
@@ -38,11 +38,16 @@
                             <span><strong>En stock</strong></span>
                         </div>
                         <div class="cart__content__products__item__quantity">
-                            <span>Quantité: {{ item.quantity }}</span>
+                            <span>Quantité</span>
+                            <select name="quantity" class="quantity-select" data-product-id="{{ item.product.id }}">
+                                {% for q in 1..10 %}
+                                    <option value="{{ q }}" {% if q == item.quantity %}selected{% endif %}>{{ q }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <div class="cart__content__products__item__total">
                             <span>Montant Total</span>
-                            <span><strong>{{ item.product.price }}€</strong></span>
+                            <span><strong id="product-total-amount">{{ item.product.price * item.quantity }}€</strong></span>
                         </div>
                     </div>
                 {% endfor %}
@@ -51,11 +56,11 @@
                 <div class="cart__content__sidebar__total">
                     <div class="cart__content__sidebar__total__shipping">
                         <span>Frais de port estimés</span>
-                        <span>4,50 €</span>
+                        <span id="shipping-cost">{% if totalCost < 49 %}4,50 €{% else %}GRATUIT{% endif %}</span>
                     </div>
                     <div class="cart__content__sidebar__total__amount">
                         <span><strong>Total estimé</strong></span>
-                        <span><strong>28,40€</strong></span>
+                        <span><strong id="total-amount">{{ totalCost }} €</strong></span>
                     </div>
                     <a href="">Commander</a>
                 </div>

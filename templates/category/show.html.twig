@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }} - Kusmi Tea{% endblock %}
+
+{% block body %}
+    <section class="products-selection py-4">
+        <h2>{{ category.name }}</h2>
+        <div class="products-selection__products swiper">
+            <div class="swiper-wrapper">
+                {% for product in category.products %}
+                    <a href="{{ path('app_product_show', {uuid: product.uuid}) }}" style="text-decoration: none;color: black">
+                        <div class="products-selection__products__item swiper-slide">
+                            <div class="products-selection__products__item__image">
+                                {% if product.isNew %}
+                                    <img src="{{ asset('build/images/new.webp') }}" alt="Nouveautés" class="products-selection__products__item__image-tag"/>
+                                {% endif %}
+                                <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="Rituel Minceur" class="products-selection__products__item__image-product"/>
+                            </div>
+                            <div class="products-selection__products__item__infos">
+                                <h3>{{ product.name }}</h3>
+                                <p>{{ product.description }}</p>
+                                <span>{{ product.weight }}</span>
+                                <div class="products-selection__products__item__infos__prices">
+                                    <span>{{ product.price }} €</span>
+                                </div>
+                            </div>
+                            <button>Ajouter</button>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

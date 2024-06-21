@@ -1,5 +1,5 @@
 <div class="promo-bar">
-    <p>Test de message</p>
+    <p>1 boîte de thé achetée = 1 don à l'association Plastic Odyssey</p>
     <button class="promo-bar__close" id="btn-promo-close">
         <img src={{ asset('build/images/icon-close-white.svg') }} alt="Icon Close Promo"/>
     </button>
@@ -9,7 +9,8 @@
         <a href="/" class="header__top__logo">
             <img src={{ asset('build/images/logo.svg') }} alt="Kusmi Tea"/>
         </a>
-        <div>
+        <div style="width: 450px;">
+            {% include '_search.html.twig' %}
         </div>
         <div class="header__top__icons">
             <a href="" class="header__top__icons__item">

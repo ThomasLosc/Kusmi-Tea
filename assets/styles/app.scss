@@ -2,11 +2,11 @@
 
 @import 'components/header';
 @import 'components/footer';
+@import 'components/searchbar';
 
-
-@import 'pages/resetPassword';
 @import 'product';
 
+@import 'pages/resetPassword';
 @import 'pages/home.scss';
 @import 'pages/cart.scss';
 @import 'pages/kusmiklub';
