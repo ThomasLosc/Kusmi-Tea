@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Product;
 use App\Service\CartService;
-use App\Service\PanierService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,12 +17,14 @@ class CartController extends AbstractController
     {
         $cartContent = $cartService->getCartContent();
         $totalItems = count($cartContent);
+        $totalCost = $cartService->getTotalCost();
 
         return $this->render('cart/index.html.twig', [
             'controller_name' => 'CartController',
             'isCartPage' => true,
             'cartContent' => $cartContent,
             'totalItems' => $totalItems,
+            'totalCost' => $totalCost,
         ]);
     }
 
@@ -41,5 +42,22 @@ class CartController extends AbstractController
         $cartService->removeFromCart($id);
 
         return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('/update-cart/{id}', name: 'update-cart', methods: ['POST'])]
+    public function updateCart(CartService $cartService, Request $request, int $id): JsonResponse
+    {
+        $quantity = (int) $request->request->get('quantity', 1);
+        $cartUpdate = $cartService->updateQuantity($id, $quantity);
+    
+        $productTotal = $cartUpdate['productTotal'];
+        $cartTotal = $cartUpdate['cartTotal'];
+        $shippingCost = $cartTotal < 49 ? 4.50 : 0.00;
+    
+        return $this->json([
+            'productTotal' => $productTotal,
+            'cartTotal' => $cartTotal,
+            'shippingCost' => $shippingCost,
+        ]);
     }
 }
