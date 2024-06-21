@@ -60,6 +60,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private ?bool $kusmiklub = false;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $frequencethe = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $quelThe = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $autreTypeThe = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $quelGout = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $commentConnuKusmiTea = null;
+
     public function __construct()
     {
         $this->adresses = new ArrayCollection();
@@ -248,4 +263,65 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+     // getters and setters for new fields
+     public function getFrequencethe(): ?string
+     {
+         return $this->frequencethe;
+     }
+ 
+     public function setFrequencethe(?string $frequencethe): self
+     {
+         $this->frequencethe = $frequencethe;
+ 
+         return $this;
+     }
+ 
+     public function getQuelThe(): ?string
+     {
+         return $this->quelThe;
+     }
+ 
+     public function setQuelThe(?string $quelThe): self
+     {
+         $this->quelThe = $quelThe;
+ 
+         return $this;
+     }
+ 
+     public function getAutreTypeThe(): ?string
+     {
+         return $this->autreTypeThe;
+     }
+ 
+     public function setAutreTypeThe(?string $autreTypeThe): self
+     {
+         $this->autreTypeThe = $autreTypeThe;
+ 
+         return $this;
+     }
+ 
+     public function getQuelGout(): ?string
+     {
+         return $this->quelGout;
+     }
+ 
+     public function setQuelGout(?string $quelGout): self
+     {
+         $this->quelGout = $quelGout;
+ 
+         return $this;
+     }
+ 
+     public function getCommentConnuKusmiTea(): ?string
+     {
+         return $this->commentConnuKusmiTea;
+     }
+ 
+     public function setCommentConnuKusmiTea(?string $commentConnuKusmiTea): self
+     {
+         $this->commentConnuKusmiTea = $commentConnuKusmiTea;
+ 
+         return $this;
+     }
 }

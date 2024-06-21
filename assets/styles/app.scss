@@ -2,19 +2,20 @@
 
 @import 'components/header';
 @import 'components/footer';
-@import 'components/login';
-@import 'components/register';
-@import 'components/profil';
-@import 'components/profil-edit';
-@import 'components/profil-adresse';
-@import 'components/listeAdresse';
 
-@import 'components/resetPassword';
+
+@import 'pages/resetPassword';
 @import 'product';
 
 @import 'pages/home.scss';
 @import 'pages/cart.scss';
 @import 'pages/kusmiklub';
+@import 'pages/login';
+@import 'pages/register';
+@import 'pages/profil';
+@import 'pages/profil-edit';
+@import 'pages/profil-adresse';
+@import 'pages/listeAdresse';
 
 @font-face {
     font-family: 'Lato';

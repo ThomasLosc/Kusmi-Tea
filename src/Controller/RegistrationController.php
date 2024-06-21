@@ -17,6 +17,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use App\Form\RegistrationQuestion1Type;
+use App\Form\RegistrationQuestion2Type;
+use App\Form\RegistrationQuestion3Type;
+use App\Form\RegistrationQuestion4Type;
+use App\Form\RegistrationQuestion5Type;
 
 class RegistrationController extends AbstractController
 {
@@ -92,4 +97,125 @@ class RegistrationController extends AbstractController
 
         return $this->redirectToRoute('app_register');
     }
+
+    #[Route('/register/1', name: 'app_question1')]
+    public function question1(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_register');
+        }
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(RegistrationQuestion1Type::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManagerInterface->persist($user);
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_question2');
+        }
+
+        return $this->render('registration/question1.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/register/2', name: 'app_question2')]
+    public function question2(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_register');
+        }
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(RegistrationQuestion2Type::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManagerInterface->persist($user);
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_question3');
+        }
+
+        return $this->render('registration/question2.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/register/3', name: 'app_question3')]
+    public function question3(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_register');
+        }
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(RegistrationQuestion3Type::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManagerInterface->persist($user);
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_question4');
+        }
+
+        return $this->render('registration/question3.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/register/4', name: 'app_question4')]
+    public function question4(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_register');
+        }
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(RegistrationQuestion4Type::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManagerInterface->persist($user);
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_question5');
+        }
+
+        return $this->render('registration/question4.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/register/5', name: 'app_question5')]
+    public function question5(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_register');
+        }
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(RegistrationQuestion5Type::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManagerInterface->persist($user);
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('registration/question5.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+        
 }
