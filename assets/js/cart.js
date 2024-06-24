@@ -49,3 +49,14 @@ const quantitySelects = document.querySelectorAll('.quantity-select');
             }
         }
     }
+
+    const toggleReduction = document.querySelector('#toggle-reduction');
+
+    toggleReduction.addEventListener('click', function() {
+        const reductionContent = document.querySelector('.cart__content__sidebar__reduction__content');
+        
+        if (reductionContent) {
+            reductionContent.classList.toggle('cart__content__sidebar__reduction__content-visible');
+            toggleReduction.classList.toggle('cart__content__sidebar__reduction__header-rotate');
+        }
+    });
