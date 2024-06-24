@@ -29,9 +29,15 @@
                     <div class="col-md-12 mt-3">
                     {{ form_row(form.commentConnuKusmiTea) }}
                     </div>
-                    <button class="mt-5 btn-connexion" type="submit">
-                        CRÉER MON COMPTE
+                    <a class="mt-5 btn-club" href="{{ path('app_question4') }}">
+                        PRÉCÉDENT
+                    </a>
+                    <button class="mt-2 btn-connexion" type="submit">
+                        VALIDER
                     </button>
+                    <a class="mt-5 btn-club" href="{{ path('app_home') }}">
+                        RETOUR A L'ACCUEIL
+                    </a>
             {{ form_end(form) }}
                 </div>
         </div>

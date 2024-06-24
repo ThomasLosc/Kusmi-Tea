@@ -29,9 +29,15 @@
                     <div class="col-md-12 mt-3">
                     {{ form_row(form.autreTypeThe) }}
                     </div>
-                    <button class="mt-5 btn-connexion" type="submit">
+                    <a class="mt-5 btn-club" href="{{ path('app_question2') }}">
+                        PRECEDENT
+                    </a>
+                    <button class="mt-2 btn-connexion" type="submit">
                         SUIVANT
                     </button>
+                    <a class="mt-5 btn-club" href="{{ path('app_home') }}">
+                        RETOUR A L'ACCUEIL
+                    </a>
             {{ form_end(form) }}
                 </div>
         </div>

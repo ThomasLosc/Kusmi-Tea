@@ -702,3 +702,52 @@
         }
     }
 }
+
+/* Popup styles */
+.popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #9b090d;
+    color: white;
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.popup-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    background-color: #9b090d;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.popup-button:hover {
+    background-color: #9b090d;
+}
+
+/* Popup visible state */
+.popup.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Popup hidden state */
+.popup.hidden {
+    display: none;
+}
+
+/* Popup text styles */
+.popup-text {
+    margin: 0;
+}
+
