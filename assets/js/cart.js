@@ -37,15 +37,31 @@ const quantitySelects = document.querySelectorAll('.quantity-select');
 
         const totalAmountElement = document.querySelector('#total-amount');
         if (totalAmountElement) {
-            totalAmountElement.textContent = (cartTotal + shippingCost).toFixed(2) + ' €';
+            totalAmountElement.textContent = (cartTotal + shippingCost) + ' €';
+        }
+
+        const totalPointsElement = document.querySelector('.cart__content__sidebar__total__amount__points');
+        if (totalPointsElement) {
+            totalPointsElement.textContent = "Gagnez " + (cartTotal) + " points avec cette commande !";
         }
 
         const shippingElement = document.querySelector('#shipping-cost');
         if (shippingElement) {
             if (shippingCost > 0) {
-                shippingElement.textContent = shippingCost.toFixed(2) + ' €';
+                shippingElement.textContent = shippingCost + ' €';
             } else {
                 shippingElement.textContent = 'GRATUIT';
             }
         }
     }
+
+    const toggleReduction = document.querySelector('#toggle-reduction');
+
+    toggleReduction.addEventListener('click', function() {
+        const reductionContent = document.querySelector('.cart__content__sidebar__reduction__content');
+        
+        if (reductionContent) {
+            reductionContent.classList.toggle('cart__content__sidebar__reduction__content-visible');
+            toggleReduction.classList.toggle('cart__content__sidebar__reduction__header-rotate');
+        }
+    });
