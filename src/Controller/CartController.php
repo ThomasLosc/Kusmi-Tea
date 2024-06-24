@@ -18,6 +18,10 @@ class CartController extends AbstractController
     #[Route('/cart', name: 'app_cart')]
     public function index(CartService $cartService, EntityManagerInterface $entityManagerInterface): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+        
         $cartContent = $cartService->getCartContent();
         $totalItems = count($cartContent);
         $totalCost = $cartService->getTotalCost();
@@ -67,6 +71,11 @@ class CartController extends AbstractController
     #[Route('/cart/commande/', name: 'app_commande', methods: ['POST', 'GET'])]
 public function createCommande(CartService $cartService, EntityManagerInterface $entityManager): Response
 {
+
+    if (!$this->getUser()) {
+        return $this->redirectToRoute('app_login');
+    }
+
     $cartContent = $cartService->getCartContent();
 
     if (empty($cartContent)) {
