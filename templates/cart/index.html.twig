@@ -74,6 +74,9 @@
                         <span><strong id="total-amount">{{ totalCost }} €</strong></span>
                     </div>
                     <a href="">Commander</a>
+                    <span class="cart__content__sidebar__total__amount__points">
+                        Gagnez {% if totalCost < 49 %}{{totalCost - 4.50}}{% else %}{{totalCost}}{% endif %} points avec cette commande !
+                    </span>
                 </div>
             </div>
         </div>
