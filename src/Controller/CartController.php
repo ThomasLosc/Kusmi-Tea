@@ -107,6 +107,7 @@ public function createCommande(CartService $cartService, EntityManagerInterface 
     $commande->setPoints($totalPoints);
     $commande->setQuantite($totalQuantity);
     $commande->setProductIds($productIds);
+    $commande->setDate(new \DateTime());
     $commande->setUser($this->getUser());
 
     $entityManager->persist($commande);

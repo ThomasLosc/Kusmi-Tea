@@ -1,0 +1,83 @@
+.largeur-block {
+  width: 80%;
+  @media (max-width: 992px) { /* Ajustement du point de rupture */
+    width: 100%;
+  }
+}
+
+.container-fluid.commande {
+  background-color: #ECEBEB;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centrage vertical */
+  flex-direction: column; /* Aligner les éléments en colonne */
+
+  h1 {
+    color: #000;
+    padding: 10px 30px;
+    border: none;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+    font-size: 2rem; /* Taille de police ajustée */
+
+    &.active {
+      color: #000; /* Couleur noire pour l'onglet actif */
+      border-bottom: 2px solid #000;
+    }
+
+    @media (max-width: 992px) { /* Ajustement du point de rupture */
+      font-size: 1.5rem; /* Taille de police moyenne */
+    }
+  }
+}
+
+.container-fluid.commande-id {
+  background-color: #ECEBEB;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+
+  .row {
+    width: 80%; /* Largeur de la rangée */
+    @media (max-width: 992px) { /* Ajustement du point de rupture */
+      width: 100%;
+    }
+  }
+
+  .icon {
+    color: #000;
+    font-size: 60px;
+
+    @media (max-width: 992px) { /* Ajustement du point de rupture */
+      font-size: 40px; /* Taille de police moyenne */
+    }
+  }
+
+  .p-num {
+    color: #000;
+    border: none;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem; /* Taille de police ajustée */
+
+    @media (max-width: 992px) { /* Ajustement du point de rupture */
+      font-size: 0.9rem; /* Taille de police moyenne */
+    }
+  }
+
+  .commande-card {
+    border: 1px solid #ddd; /* Bordure grise légère */
+    border-radius: 10px; /* Bordures arrondies */
+    background: #fff; /* Fond blanc */
+    margin-top: 20px;
+    padding: 20px; /* Espacement intérieur */
+  }
+
+  .commande-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Envelopper les éléments pour les petits écrans */
+  }
+}

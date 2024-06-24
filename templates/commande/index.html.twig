@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes{% endblock %}
+
+{% block body %}
+<div class="container-fluid commande">
+    <h1 class="text-center active">HISTORIQUE DE MES COMMANDES</h1>
+</div>
+
+<div class="container-fluid commande-id">
+    <div class="row largeur-block">
+        {% for commande in commandes %}
+        <div class="col-12 col-md-6">
+            <div class="commande-card">
+                <div class="commande-details">
+                    <div class="details-section">
+                        <i class="bi bi-box-seam icon m-3"></i>
+                    </div>
+                    <div class="details-section">
+                        <p class="p-num">Numéro de la commande : {{ commande.id }}</p>
+                        <p class="p-num">Date : {{ commande.date|date('d/m/Y') }}</p>
+                        <p class="p-num">Prix : {{ commande.prix }} €</p>
+                        <p class="p-num">Nombre de points cumulés : {{ commande.points }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
