@@ -35,72 +35,31 @@
 </section>
 
 <section class="products-selection">
-    <h2>Notre <strong>sélection</strong> du moment</h2>
+    <h2 class="mt-5">Notre <strong>sélection</strong> du moment</h2>
     <p>Découvrez nos incontournables à déguster à tout moment de la journée. Bien-être, classiques, aromatisés à vous de choisir votre thé préféré.</p>
     <div class="products-selection__products swiper">
         <div class="swiper-wrapper">
+            {% for produit in produits %}
             <div class="products-selection__products__item swiper-slide">
                 <div class="products-selection__products__item__image">
+                    {% if produit.isNew == true %}
                     <img src={{ asset('build/images/new.webp') }} alt="Nouveautés" class="products-selection__products__item__image-tag"/>
-                    <img src={{ asset('build/images/rituel-minceur.webp') }} alt="Rituel Minceur" class="products-selection__products__item__image-product"/>
+                    {% endif %}
+                    {% if produit.imageName %}
+                        <img src="{{ vich_uploader_asset(produit, 'imageFile') }}" alt="Rituel Minceur" class="products-selection__products__item__image-product"/>
+                    {% endif %}
                 </div>
                 <div class="products-selection__products__item__infos">
-                    <h3>Rituel Minceur</h3>
-                    <p>Thé minceur (thé vert, maté)</p>
-                    <span>Boîte 100g</span>
+                    <h3>{{ produit.name }}</h3>
+                    <p>{{ produit.description }}</p>
+                    <span>{{ produit.weight }}g</span>
                     <div class="products-selection__products__item__infos__prices">
-                        <span>23,90 €</span>
+                        <span>{{ produit.price }} €</span>
                     </div>
                 </div>
                 <button>Ajouter</button>
             </div>
-            <div class="products-selection__products__item swiper-slide">
-                <div class="products-selection__products__item__image">
-                    <img src={{ asset('build/images/new.webp') }} alt="Nouveautés" class="products-selection__products__item__image-tag"/>
-                    <img src={{ asset('build/images/trio-sante.webp') }} alt="Trio Santé" class="products-selection__products__item__image-product"/>
-                </div>
-                <div class="products-selection__products__item__infos">
-                    <h3>Trio Santé</h3>
-                    <p>Minceur, Sommeil et Défenses Immunitaires</p>
-                    <span></span>
-                    <div class="products-selection__products__item__infos__prices">
-                        <span>29,70 €</span>
-                    </div>
-                </div>
-                <button>Ajouter</button>
-            </div>
-            <div class="products-selection__products__item swiper-slide">
-                <div class="products-selection__products__item__image">
-                    <div class="products-selection__products__item__image-promotion">-25%</div>
-                    <img src={{ asset('build/images/ensemble-nomade.webp') }} alt="Ensemble Nomade" class="products-selection__products__item__image-product"/>
-                </div>
-                <div class="products-selection__products__item__infos">
-                    <h3>Ensemble à thé glacé nomade</h3>
-                    <p>Coffrets 24 sachets Thés Glacés et un Mug de voyage</p>
-                    <span></span>
-                    <div class="products-selection__products__item__infos__prices">
-                        <span>36,90 €</span>
-                        <span>49,90 €</span>
-                    </div>
-                </div>
-                <button>Ajouter</button>
-            </div>
-            <div class="products-selection__products__item swiper-slide">
-                <div class="products-selection__products__item__image">
-                    <div class="products-selection__products__item__image-promotion">-20%</div>
-                    <img src={{ asset('build/images/ensemble-the-glace.webp') }} alt="Ensemble thé glacé" class="products-selection__products__item__image-product"/>
-                </div>
-                <div class="products-selection__products__item__infos">
-                    <h3>Ensemble à thé glacé</h3>
-                    <p>AquaExotica, AquaSummer et une carafe bleue</p>
-                    <span></span>
-                    <div class="products-selection__products__item__infos__prices">
-                        <span>39,90 €</span>
-                        <span>52,30 €</span>
-                    </div>
-                </div>
-                <button>Ajouter</button>
-            </div>
+            {% endfor %}
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -189,13 +148,33 @@
 </section>
 
 {% if app.user %}
-    {% if app.user.frequencethe is null or
-        app.user.quelThe is null or
-        app.user.autreTypeThe is null or
-        app.user.quelGout is null or
-        app.user.commentConnuKusmiTea is null %}
-        <a href="{{ path('app_question1') }}" class="popup-button">
-            <div id="popup" class="popup hidden d-flex align-items-center justify-content-center">
+    {% if app.user.frequencethe is null %}
+        <a href="{{ path('app_question1') }}">
+        <div id="popup" class="popup popup-button hidden d-flex align-items-center justify-content-center">
+                <p class="popup-text">Favoriser mes recherches</p>
+            </div>
+        </a>
+    {% elseif app.user.quelThe is null %}
+        <a href="{{ path('app_question2') }}">
+        <div id="popup" class="popup popup-button hidden d-flex align-items-center justify-content-center">
+                <p class="popup-text">Favoriser mes recherches</p>
+            </div>
+        </a>
+    {% elseif app.user.autreTypeThe is null %}
+        <a href="{{ path('app_question3') }}">
+        <div id="popup" class="popup popup-button hidden d-flex align-items-center justify-content-center">
+                <p class="popup-text">Favoriser mes recherches</p>
+            </div>
+        </a>
+    {% elseif app.user.quelGout is null %}
+        <a href="{{ path('app_question4') }}">
+        <div id="popup" class="popup popup-button hidden d-flex align-items-center justify-content-center">
+                <p class="popup-text">Favoriser mes recherches</p>
+            </div>
+        </a>
+    {% elseif app.user.commentConnuKusmiTea is null %}
+        <a href="{{ path('app_question5') }}">
+        <div id="popup" class="popup popup-button hidden d-flex align-items-center justify-content-center">
                 <p class="popup-text">Favoriser mes recherches</p>
             </div>
         </a>
