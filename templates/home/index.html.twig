@@ -188,4 +188,32 @@
     </div>
 </section>
 
+{% if app.user %}
+    {% if app.user.frequencethe is null or
+        app.user.quelThe is null or
+        app.user.autreTypeThe is null or
+        app.user.quelGout is null or
+        app.user.commentConnuKusmiTea is null %}
+        <a href="{{ path('app_question1') }}" class="popup-button">
+            <div id="popup" class="popup hidden d-flex align-items-center justify-content-center">
+                <p class="popup-text">Favoriser mes recherches</p>
+            </div>
+        </a>
+    {% endif %}
+{% endif %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var popup = document.getElementById('popup');
+        
+        // Function to show the popup
+        function showPopup() {
+            popup.classList.remove('hidden');
+            popup.classList.add('visible');
+        }
+
+        // Show the popup after a delay (e.g., 5 seconds)
+        setTimeout(showPopup, 5000);
+    });
+</script>
+
 {% endblock %}

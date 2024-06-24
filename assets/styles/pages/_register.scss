@@ -50,7 +50,7 @@ justify-content: center;
         padding: 15px;
         background-color: #000;
         color: #fff;
-        border: none;
+        border: 1px solid #fff;
 
         // Hover effect
         &:hover {
@@ -127,6 +127,28 @@ justify-content: center;
         
           .text-danger {
               color: red;
+          }
+      }
+
+      .btn-club{
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        font-family: Lato, sans-serif;
+        padding: 15px;
+        text-decoration: none;
+        cursor: pointer;
+        letter-spacing: .025em;
+        border: .0625rem solid #fff;
+        background-color: #4a4a4a;
+        color: #fff;
+      
+        // Hover effect
+        &:hover {
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            border: 1px solid #000;
           }
       }
 }

@@ -25,20 +25,6 @@ class ProfilController extends AbstractController
         
         $user = $this->getUser();
 
-        if ($user) {
-            if (empty($user->getFrequencethe())) {
-                return $this->redirectToRoute('app_question1');
-            } elseif (empty($user->getQuelThe())) {
-                return $this->redirectToRoute('app_question2');
-            } elseif (empty($user->getQuelGout())) {
-                return $this->redirectToRoute('app_question3');
-            } elseif (empty($user->getAutreTypeThe())) {
-                return $this->redirectToRoute('app_question4');
-            } elseif (empty($user->getCommentConnuKusmiTea())) {
-                return $this->redirectToRoute('app_question5');
-            }
-        }
-
         $adresses = $adresseRepository->findBy(['user' => $this->getUser()]);
 
         return $this->render('profil/index.html.twig', [
@@ -55,20 +41,6 @@ class ProfilController extends AbstractController
         }
 
         $user = $this->getUser();
-
-        if ($user) {
-            if (empty($user->getFrequencethe())) {
-                return $this->redirectToRoute('app_question1');
-            } elseif (empty($user->getQuelThe())) {
-                return $this->redirectToRoute('app_question2');
-            } elseif (empty($user->getQuelGout())) {
-                return $this->redirectToRoute('app_question3');
-            } elseif (empty($user->getAutreTypeThe())) {
-                return $this->redirectToRoute('app_question4');
-            } elseif (empty($user->getCommentConnuKusmiTea())) {
-                return $this->redirectToRoute('app_question5');
-            }
-        }
 
         $form = $this->createForm(KusmiKlubType::class, $user);
         $form->handleRequest($request);
@@ -96,22 +68,6 @@ class ProfilController extends AbstractController
         }
 
         $user = $this->getUser();
-
-        if ($user) {
-            if (empty($user->getFrequencethe())) {
-                return $this->redirectToRoute('app_question1');
-            } elseif (empty($user->getQuelThe())) {
-                return $this->redirectToRoute('app_question2');
-            } elseif (empty($user->getQuelGout())) {
-                return $this->redirectToRoute('app_question3');
-            } elseif (empty($user->getAutreTypeThe())) {
-                return $this->redirectToRoute('app_question4');
-            } elseif (empty($user->getCommentConnuKusmiTea())) {
-                return $this->redirectToRoute('app_question5');
-            }
-        }
-        
-        $user = $this->getUser();
         $form = $this->createForm(ProfilType::class, $user);
         $form->handleRequest($request);
 
@@ -135,22 +91,6 @@ class ProfilController extends AbstractController
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
-        }
-
-        $user = $this->getUser();
-
-        if ($user) {
-            if (empty($user->getFrequencethe())) {
-                return $this->redirectToRoute('app_question1');
-            } elseif (empty($user->getQuelThe())) {
-                return $this->redirectToRoute('app_question2');
-            } elseif (empty($user->getQuelGout())) {
-                return $this->redirectToRoute('app_question3');
-            } elseif (empty($user->getAutreTypeThe())) {
-                return $this->redirectToRoute('app_question4');
-            } elseif (empty($user->getCommentConnuKusmiTea())) {
-                return $this->redirectToRoute('app_question5');
-            }
         }
 
         $adresse = new Adresse();
@@ -180,22 +120,6 @@ class ProfilController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        $user = $this->getUser();
-
-        if ($user) {
-            if (empty($user->getFrequencethe())) {
-                return $this->redirectToRoute('app_question1');
-            } elseif (empty($user->getQuelThe())) {
-                return $this->redirectToRoute('app_question2');
-            } elseif (empty($user->getQuelGout())) {
-                return $this->redirectToRoute('app_question3');
-            } elseif (empty($user->getAutreTypeThe())) {
-                return $this->redirectToRoute('app_question4');
-            } elseif (empty($user->getCommentConnuKusmiTea())) {
-                return $this->redirectToRoute('app_question5');
-            }
-        }
-
         $adresses = $adresseRepository->findBy(['user' => $this->getUser()]);
 
         return $this->render('profil/listeAdresse.html.twig', [
@@ -208,22 +132,6 @@ class ProfilController extends AbstractController
     {
         $form = $this->createForm(AdresseType::class, $adresse);
         $form->handleRequest($request);
-
-        $user = $this->getUser();
-
-        if ($user) {
-            if (empty($user->getFrequencethe())) {
-                return $this->redirectToRoute('app_question1');
-            } elseif (empty($user->getQuelThe())) {
-                return $this->redirectToRoute('app_question2');
-            } elseif (empty($user->getQuelGout())) {
-                return $this->redirectToRoute('app_question3');
-            } elseif (empty($user->getAutreTypeThe())) {
-                return $this->redirectToRoute('app_question4');
-            } elseif (empty($user->getCommentConnuKusmiTea())) {
-                return $this->redirectToRoute('app_question5');
-            }
-        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
@@ -243,22 +151,6 @@ class ProfilController extends AbstractController
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
-        }
-
-        $user = $this->getUser();
-
-        if ($user) {
-            if (empty($user->getFrequencethe())) {
-                return $this->redirectToRoute('app_question1');
-            } elseif (empty($user->getQuelThe())) {
-                return $this->redirectToRoute('app_question2');
-            } elseif (empty($user->getQuelGout())) {
-                return $this->redirectToRoute('app_question3');
-            } elseif (empty($user->getAutreTypeThe())) {
-                return $this->redirectToRoute('app_question4');
-            } elseif (empty($user->getCommentConnuKusmiTea())) {
-                return $this->redirectToRoute('app_question5');
-            }
         }
         
         if ($this->isCsrfTokenValid('delete' . $adresse->getId(), $request->request->get('_token'))) {
