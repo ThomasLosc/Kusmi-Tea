@@ -1,3 +1,9 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+botman:
+    path: /botman
+    controller: App\Controller\ChatbotController::handle
+botman_chat:
+    path: /botman/chat
+    controller: App\Controller\ChatbotController::chatWidget

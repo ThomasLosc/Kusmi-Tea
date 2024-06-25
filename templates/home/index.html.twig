@@ -211,8 +211,10 @@
             popup.classList.add('visible');
         }
 
-        // Show the popup after a delay (e.g., 5 seconds)
-        setTimeout(showPopup, 5000);
+        if(popup) {
+                // Show the popup after a delay (e.g., 5 seconds)
+                setTimeout(showPopup, 5000);
+        }
     });
 </script>
 

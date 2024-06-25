@@ -16,11 +16,25 @@
 
         {% block javascripts %}
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-            {{ encore_entry_script_tags('app') }}
             {{ encore_entry_script_tags('header') }}
             {{ encore_entry_script_tags('footer') }}
             {{ encore_entry_script_tags('home') }}
             {{ encore_entry_script_tags('product') }}
+            <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+            <script>
+                var botmanWidget = {
+                    chatServer: '/botman',
+                    frameEndpoint: '/botman/chat',
+                    title: 'Kusmi Tea',
+                    aboutText: '',
+                    bubbleAvatarUrl: '/build/images/icon-message.svg',
+                    placeholderText: 'Envoyer un message...',
+                    mainColor: '#d7004d',
+                    bubbleBackground: '#d7004d',
+                    headerTextColor: '#fff',
+                    introMessage: 'Avant toute chose, quel est votre prénom ?',
+                };
+            </script>
         {% endblock %}
     </head>
     <body>
