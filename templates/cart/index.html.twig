@@ -4,6 +4,17 @@
 
 {% block body %}
 
+{% for message in app.flashes('success') %}
+    <div class="container-fluid cart-flash">
+            <div class="alert" role="alert">
+                <div class="flash-message d-flex align-items-center justify-content-center">
+                <strong class="me-3">{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
 {% if totalItems == 0 %}
     <div class="empty-cart">
         <div class="empty-cart__head">
@@ -20,7 +31,7 @@
     <div class="cart">
         <div class="cart__head">
             <h1>Mon panier</h1>
-            <p>{{totalItems}} produit(s)</p>
+            <p>{{ totalItems }} produit(s)</p>
         </div>
 
         <a href="{{ path('app_home') }}">< Continuer mes achats</a>
@@ -28,7 +39,7 @@
         <div class="cart__content">
             <div class="cart__content__products">
                 {% for item in cartContent %}
-                    <div class="cart__content__products__item" data-product-id={{ item.product.id }}>
+                    <div class="cart__content__products__item" data-product-id="{{ item.product.id }}">
                         <a href="{{ path('remove-from-cart', { 'id': item.product.id }) }}" class="cart__content__products__item__remove">
                             <img src="{{ asset('build/images/icon-close.svg') }}" alt="Supprimer" />
                         </a>
@@ -73,9 +84,9 @@
                         <span><strong>Total estimé</strong></span>
                         <span><strong id="total-amount">{{ totalCost }} €</strong></span>
                     </div>
-                    <a href="">Commander</a>
+                    <a href="{{ path('app_commande') }}">Commander</a>
                     <span class="cart__content__sidebar__total__amount__points">
-                        Gagnez {% if totalCost < 49 %}{{totalCost - 4.50}}{% else %}{{totalCost}}{% endif %} points avec cette commande !
+                        Gagnez {% if totalCost < 49 %}{{ totalCost - 4.50 }}{% else %}{{ totalCost }}{% endif %} points avec cette commande !
                     </span>
                 </div>
             </div>

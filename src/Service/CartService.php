@@ -114,6 +114,9 @@ class CartService
 
         return $totalCost;
     }
-}
 
-?>
+    public function clearCart()
+    {
+        $this->session->set('cart', []);
+    }
+}

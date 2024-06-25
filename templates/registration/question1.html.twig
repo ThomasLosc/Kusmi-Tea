@@ -3,21 +3,6 @@
 {% block title %}Créer un compte{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-
-<div class="container-fluid register">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="{{ path('app_login') }}">CONNEXION</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="{{ path('app_register') }}">CRÉER UN COMPTE</a>
-      </li>
-    </ul>
-</div>
-
 <div class="container-fluid register-id">
   <div class="row w-50 w-100-sm">
     <div class="col-md-12 border bg-light">

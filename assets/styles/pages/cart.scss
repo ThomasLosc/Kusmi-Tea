@@ -302,3 +302,34 @@
         }
     }
 }
+
+.container-fluid.cart-flash {
+    background-color: #ECEBEB;
+    padding: 20px 0;
+  
+    // Flexbox to center the tabs
+    display: flex;
+    justify-content: center;
+  
+    .flash-message {
+      position: relative;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 30px;
+      font-size: large;
+      border: 1px solid #000;
+      background: transparent;
+      font-family: 'Lato', sans-serif;
+    
+      @media (max-width: $breakpoint-desktop) {
+        font-size: medium;
+      }
+    
+      .close-button {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+      }
+    }
+}

@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
+use App\Form\CommandeType;
 use App\Service\CartService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,8 +16,12 @@ class CartController extends AbstractController
 {
 
     #[Route('/cart', name: 'app_cart')]
-    public function index(CartService $cartService): Response
+    public function index(CartService $cartService, EntityManagerInterface $entityManagerInterface): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+        
         $cartContent = $cartService->getCartContent();
         $totalItems = count($cartContent);
         $totalCost = $cartService->getTotalCost();
@@ -59,5 +66,57 @@ class CartController extends AbstractController
             'cartTotal' => $cartTotal,
             'shippingCost' => $shippingCost,
         ]);
+    }
+
+    #[Route('/cart/commande/', name: 'app_commande', methods: ['POST', 'GET'])]
+public function createCommande(CartService $cartService, EntityManagerInterface $entityManager): Response
+{
+
+    if (!$this->getUser()) {
+        return $this->redirectToRoute('app_login');
+    }
+
+    $cartContent = $cartService->getCartContent();
+
+    if (empty($cartContent)) {
+        $this->addFlash('error', 'Votre panier est vide.');
+        return $this->redirectToRoute('app_cart');
+    }
+
+    $totalPrice = 0.0;
+    $totalQuantity = 0;
+    $productIds = [];
+
+    foreach ($cartContent as $item) {
+        $product = $item['product'];
+        $quantity = $item['quantity'];
+
+        $totalPrice += $product->getPrice() * $quantity;
+        $totalQuantity += $quantity;
+        $productIds[] = $product->getId();
+    }
+
+    $totalPoints = $totalPrice;
+
+    if ($totalPrice < 49) {
+        $totalPrice += 4.50;
+    }
+
+    $commande = new Commande();
+    $commande->setPrix($totalPrice);
+    $commande->setPoints($totalPoints);
+    $commande->setQuantite($totalQuantity);
+    $commande->setProductIds($productIds);
+    $commande->setDate(new \DateTime());
+    $commande->setUser($this->getUser());
+
+    $entityManager->persist($commande);
+    $entityManager->flush();
+
+    $cartService->clearCart();
+
+    $this->addFlash('success', 'Votre commande a été enregistrée.');
+
+    return $this->redirectToRoute('app_cart');
     }
 }
