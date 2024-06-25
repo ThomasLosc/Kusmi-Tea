@@ -1,0 +1,17 @@
+<div class="container-fluid article">
+    <h1 class="text-center active">AJOUTER UNE CATEGORIE</h1>
+</div>
+
+<div class="container-fluid article-id">
+    <div class="row w-50 m-auto">
+        <div class="col-md-12 border bg-light">
+            <div class="p-3">
+                {{ form_start(form) }}
+                    {{ form_row(form.nom) }}
+                    <button class="btn-article mt-5">Enregistrer</button>
+                    <a href="{{ path('app_categorie_article_index') }}" class="btn-retour mt-3">Retour</a>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>

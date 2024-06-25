@@ -1,0 +1,170 @@
+.categories {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  background-color: #ECEBEB;
+  flex-wrap: wrap; // Allows wrapping if there are too many categories to fit in one line
+
+  .btn-category {
+      background-color: #7B1F1F;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      margin: 5px;
+      text-decoration: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+
+      &.active {
+          background-color: #5A0E0E;
+      }
+
+      &:hover {
+          background-color: #5A0E0E;
+      }
+  }
+}
+
+
+.largeur-block {
+width: 80%;
+@media (max-width: $breakpoint-desktop) {
+  width: 100%;
+}
+}
+
+.container-fluid.article {
+background-color: #ECEBEB;
+padding: 20px 0;
+display: flex;
+justify-content: center;
+
+h1 {
+  color: #000;
+  padding: 10px 30px;
+  border: none;
+  background: transparent;
+  font-family: 'Lato', sans-serif;
+
+  &.active {
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+
+  @media (max-width: $breakpoint-desktop) {
+    font-size: medium;
+  }
+}
+}
+
+.container-fluid.article-id {
+background-color: #ECEBEB;
+padding: 20px 0;
+display: flex;
+justify-content: center;
+
+.btn-article {
+  width: 100%;
+  padding: 15px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+  }
+}
+
+.btn-article-2 {
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  color: grey;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.7rem;
+  border: 1px solid grey;
+  font-family: 'Lato', sans-serif;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+    font-size: 0.7rem;
+    border: 1px solid #000;
+  }
+}
+
+.card {
+  border: none;
+  background-color: #fff;
+  border-radius: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  .card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-body {
+    padding: 20px;
+
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #000;
+    }
+
+    .card-text {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+}
+
+.input-design {
+width: 100%;
+border: 1px solid grey;
+padding: 10px;
+}
+
+@media (max-width: 576px) {
+.w-100-sm {
+  width: 80% !important;
+}
+}
+
+.btn-retour {
+width: 100%;
+display: inline-block;
+text-align: center;
+font-family: 'Lato', sans-serif;
+padding: 15px;
+text-decoration: none;
+border: .0625rem solid #fff;
+background-color: #4a4a4a;
+color: #fff;
+
+&:hover {
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  border: 1px solid #000;
+}
+}

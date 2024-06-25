@@ -7,68 +7,88 @@
     <div class="d-flex align-items-center justify-content-center flex-column">
         {% if app.user.kusmiklub == true %}
         <h3 class="mt-5">Bienvenue dans votre espace fidélité</h3>
-        <h3 class="mt-5">€</h3>
-        <h5 class="mt-2">total des bons d'achat actifs</h5>
-        <div class="bons-achat mt-5">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#actifs">Bon.s d'achat actifs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#expires">Expiré.s</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#utilises">Utilisé.s</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane container active" id="actifs">
-                    <p>Vous n'avez aucun bon d'achat disponible</p>
-                </div>
-                <div class="tab-pane container fade" id="expires">
-                    <p>Aucun bon d'achat expiré</p>
-                </div>
-                <div class="tab-pane container fade" id="utilises">
-                    <p>Aucun bon d'achat utilisé</p>
+        <h3 class="mt-5">Vous avez {{ points }} points</h3>
+        <h5 class="mt-2">Total des bons d'achat actifs</h5>
+        
+        <div class="points-fidelite">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Programme de Fidélité</h5>
+                    {% if points < 100 %}
+                        {% set palier_points = 100 %}
+                    {% elseif points < 200 %}
+                        {% set palier_points = 200 %}
+                    {% elseif points < 300 %}
+                        {% set palier_points = 300 %}
+                    {% elseif points < 400 %}
+                        {% set palier_points = 400 %}
+                    {% else %}
+                        {% set palier_points = 500 %}
+                    {% endif %}
+                    {% set current_palier_percentage = (points / palier_points) * 100 %}
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: {{ current_palier_percentage }}%;" aria-valuenow="{{ points }}" aria-valuemin="0" aria-valuemax="{{ palier_points }}">{{ points }} / {{ palier_points }} points</div>
+                    </div>
+                    {% if points < 100 %}
+                        <p>Niveau : <strong>Bronze</strong></p>
+                        <p>Récompense : Bon de 20% sur la prochaine commande</p>
+                    {% elseif points < 200 %}
+                        <p>Niveau : <strong>Argent</strong></p>
+                        <p>Récompense : 15 points supplémentaires</p>
+                    {% elseif points < 300 %}
+                        <p>Niveau : <strong>Or</strong></p>
+                        <p>Récompense : Bon de 50% sur la prochaine commande</p>
+                    {% elseif points < 400 %}
+                        <p>Niveau : <strong>Platine</strong></p>
+                        <p>Récompense : 20 points supplémentaires</p>
+                    {% else %}
+                        <p>Niveau : <strong>Diamant</strong></p>
+                        <p>Récompense : Un coffret offert</p>
+                    {% endif %}
                 </div>
             </div>
-        </div>
 
-        <div class="points-fidelite mt-5">
-            <div class="row">
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Points Fidélité: 0</h5>
-                            <div class="progress mb-3">
-                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="70"></div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                            <img class="icon mr-3" src="{{ asset('build/images/kusmi-1.svg') }}" alt="Voucher">
-                            <p>Plus que <strong>70 points</strong> avant votre prochain bon de <strong>5 euros</strong></p>
-                            <p>1€ = 1 point de fidélité</p>
-                            <p>70 points = 5€ de bon d’achat</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Mon coffret offert dès 300 pts cumulés</h5>
-                            <div class="progress mb-3">
-                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="300"></div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                            <img class="icon mr-3" src="{{ asset('build/images/kusmi-4.svg') }}" alt="Voucher">
-                            <p>Plus que <strong>300 points</strong> avant d’obtenir votre coffret offert</p>
-                            <p>0 / 300 pts</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="recompenses mt-4">
+                <h5>Récompenses par palier</h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Palier</th>
+                            <th scope="col">Points requis</th>
+                            <th scope="col">Récompense</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bronze</td>
+                            <td>0 - 99</td>
+                            <td>Bon de 20% sur la prochaine commande</td>
+                        </tr>
+                        <tr>
+                            <td>Argent</td>
+                            <td>100 - 199</td>
+                            <td>15 points supplémentaires</td>
+                        </tr>
+                        <tr>
+                            <td>Or</td>
+                            <td>200 - 299</td>
+                            <td>Bon de 50% sur la prochaine commande</td>
+                        </tr>
+                        <tr>
+                            <td>Platine</td>
+                            <td>300 - 399</td>
+                            <td>20 points supplémentaires</td>
+                        </tr>
+                        <tr>
+                            <td>Diamant</td>
+                            <td>400 - 500</td>
+                            <td>Un coffret de votre choix offert</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+        
         {% endif %}
         <img class="image-klub mt-3" src="{{ asset('build/images/KusmiKlubb.webp') }}" alt="Kusmi Klub">
         <h4 class="mt-5">1€ DÉPENSÉ = 1 POINT</h4>

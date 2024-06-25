@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Adresse;
 use App\Repository\AdresseRepository;
+use App\Repository\CommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,11 +18,13 @@ use App\Form\AdresseType;
 class ProfilController extends AbstractController
 {
     #[Route('/profil', name: 'app_profil')]
-    public function index(AdresseRepository $adresseRepository): Response
+    public function index(AdresseRepository $adresseRepository , CommandeRepository $commandeRepository): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
+
+        $commandes = $commandeRepository->findBy(['user' => $this->getUser()]);
         
         $user = $this->getUser();
 
@@ -34,10 +37,20 @@ class ProfilController extends AbstractController
     }
 
     #[Route('/profil/kusmiKlub', name: 'app_kusmi_klub')]
-    public function kusmiClub(AdresseRepository $adresseRepository, EntityManagerInterface $entityManager, Request $request): Response
+    public function kusmiClub(AdresseRepository $adresseRepository, EntityManagerInterface $entityManager, Request $request, CommandeRepository $commandeRepository): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
+        }
+
+        $commandes = $commandeRepository->findBy(['user' => $this->getUser()]);
+
+        $points = 0;
+
+        foreach ($commandes as $commande) {
+            if ($commande->getPoints() > 0) {
+                $points += $commande->getPoints();
+            }
         }
 
         $user = $this->getUser();
@@ -56,7 +69,8 @@ class ProfilController extends AbstractController
 
         return $this->render('profil/kusmiklub.html.twig', [
             'form' => $form->createView(),
-            'user' => $user
+            'user' => $user,
+            'points' => $points
         ]);
     }
 

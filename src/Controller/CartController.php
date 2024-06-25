@@ -68,7 +68,7 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/commande/', name: 'app_commande', methods: ['POST', 'GET'])]
+    #[Route('/cart/commande/', name: 'app_commande_cart', methods: ['POST', 'GET'])]
 public function createCommande(CartService $cartService, EntityManagerInterface $entityManager): Response
 {
 
