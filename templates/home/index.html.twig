@@ -57,9 +57,14 @@
                         <span>{{ produit.price }} €</span>
                     </div>
                 </div>
-                <button>Ajouter</button>
+                <a href="" class="btn btn-add-to-cart" data-product-id="{{ produit.id }}" data-quantity="1">
+                    AJOUTER
+                </a>
             </div>
             {% endfor %}
+        </div>
+        <div class="product__add-to-cart__message">
+            <p>Produit ajouté au panier</p>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
