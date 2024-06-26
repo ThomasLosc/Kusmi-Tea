@@ -10,6 +10,7 @@ use BotMan\BotMan\Messages\Outgoing\Question;
 class BotConversation extends Conversation
 {
     protected $firstName;
+    protected $email;
     protected $taste;
     protected $timeOfDay;
     protected $caffeineSensitivity;
@@ -34,6 +35,7 @@ class BotConversation extends Conversation
                 Button::create('Où se trouvent vos magasins ?')->value('shopLocation'),
                 Button::create('Puis-je payer ma commande en plusieurs fois ?')->value('multiplePaiements'),
                 Button::create('Avez-vous un programme de fidélité ?')->value('fidelity'),
+                Button::create('Je n\'arrive pas à accéder à mon compte client')->value('clientAccount'),
             ]);
 
         $this->ask($question, function (Answer $answer) {
@@ -52,6 +54,8 @@ class BotConversation extends Conversation
                     $this->multiplePaiements();
                 } elseif($selectedValue === "fidelity") {
                     $this->fidelity();
+                } elseif($selectedValue === "clientAccount") {
+                    $this->clientAccount();
                 }
             }
         });
@@ -88,6 +92,7 @@ class BotConversation extends Conversation
             Button::create('Où se trouvent vos magasins ?')->value('shopLocation'),
             Button::create('Puis-je payer ma commande en plusieurs fois ?')->value('multiplePaiements'),
             Button::create('Avez-vous un programme de fidélité ?')->value('fidelity'),
+            Button::create('Je n\'arrive pas à accéder à mon compte client')->value('clientAccount'),
         ]);
 
         $this->ask($question, function (Answer $answer) {
@@ -106,6 +111,8 @@ class BotConversation extends Conversation
                     $this->multiplePaiements();
                 } elseif($selectedValue === "fidelity") {
                     $this->fidelity();
+                } elseif($selectedValue === "clientAccount") {
+                    $this->clientAccount();
                 }
             }
         });
@@ -167,35 +174,35 @@ class BotConversation extends Conversation
 
         if ($this->taste == 'astringent') {
             if ($this->timeOfDay == 'matin' && $this->caffeineSensitivity == 'beaucoup') {
-                $recommendation = 'Je vous recommande le thé noir.';
+                $recommendation = 'Je vous recommande le thé noir, retrouvez nos produits <a href="/category/the-noir" target="_blank">ici</a>.';
             } elseif ($this->timeOfDay == 'apres-midi' && $this->caffeineSensitivity == 'peu') {
-                $recommendation = 'Je vous recommande le thé vert.';
+                $recommendation = 'Je vous recommande le thé vert, retrouvez nos produits <a href="/category/the-vert" target="_blank">ici</a>.';
             } elseif ($this->timeOfDay == 'soir' && ($this->caffeineSensitivity == 'sans-cafeine' || $this->caffeineSensitivity == 'sensible')) {
-                $recommendation = 'Je vous recommande une tisane sans caféine.';
+                $recommendation = 'Je vous recommande une tisane sans caféine, comme notre <a href="/product/abb2cc95-6352-4ae2-b2de-86af443c2b00" target="_blank">Aqua Summer</a>.';
             }
         } elseif ($this->taste == 'doux') {
             if ($this->timeOfDay == 'soir' && ($this->caffeineSensitivity == 'sans-cafeine' || $this->caffeineSensitivity == 'sensible')) {
-                $recommendation = 'Je vous recommande les infusions et tisanes.';
+                $recommendation = 'Je vous recommande les infusions et tisanes, retrouvez nos produits <a href="/category/infusions-et-tisanes" target="_blank">ici</a>.';
             } elseif ($this->timeOfDay == 'apres-midi' && $this->caffeineSensitivity == 'peu') {
-                $recommendation = 'Je vous recommande le thé blanc.';
+                $recommendation = 'Je vous recommande le thé blanc, retrouvez nos produits <a href="/category/the-blanc" target="_blank">ici</a>.';
             }
         } elseif ($this->taste == 'léger') {
             if ($this->timeOfDay == 'apres-midi' && $this->caffeineSensitivity == 'peu') {
-                $recommendation = 'Je vous recommande le thé blanc.';
+                $recommendation = 'Je vous recommande le thé blanc, retrouvez nos produits <a href="/category/the-blanc" target="_blank">ici</a>.';
             } elseif ($this->timeOfDay == 'toute-la-journee' && ($this->caffeineSensitivity == 'peu' || $this->caffeineSensitivity == 'sensible')) {
-                $recommendation = 'Je vous recommande le thé vert.';
+                $recommendation = 'Je vous recommande le thé vert, retrouvez nos produits <a href="/category/the-vert" target="_blank">ici</a>.';
             }
         } elseif ($this->taste == 'fruite') {
             if ($this->timeOfDay == 'soir' && ($this->caffeineSensitivity == 'sans-cafeine' || $this->caffeineSensitivity == 'sensible')) {
                 $recommendation = 'Je vous recommande le rooibos ou une infusion fruitée.';
             } elseif ($this->timeOfDay == 'apres-midi' && $this->caffeineSensitivity == 'peu') {
-                $recommendation = 'Je vous recommande le thé vert aux fruits.';
+                $recommendation = 'Je vous recommande le thé vert aux fruits, retrouvez nos produits <a href="/category/the-vert" target="_blank">ici</a>.';
             }
         } elseif ($this->taste == 'terreux') {
             if ($this->timeOfDay == 'toute la journée' && ($this->caffeineSensitivity == 'sans-cafeine' || $this->caffeineSensitivity == 'sensible')) {
-                $recommendation = 'Je vous recommande le rooibos.';
+                $recommendation = 'Je vous recommande le rooibos, retrouvez nos produits <a href="/category/rooibos" target="_blank">ici</a>..';
             } elseif ($this->timeOfDay == 'matin' && $this->caffeineSensitivity == 'beaucoup') {
-                $recommendation = 'Je vous recommande un thé noir aux notes terreuses.';
+                $recommendation = 'Je vous recommande un thé noir aux notes terreuses, retrouvez nos produits <a href="/category/the-noir" target="_blank">ici</a>..';
             }
         }
 
@@ -235,6 +242,15 @@ class BotConversation extends Conversation
     {
         $this->say("En effet ! Grâce à notre programme de fidélité, vous pouvez accumuler des points pour bénéficier d'offres exclusives et accéder à nos ventes privées. Vous pouvez vous inscrire <a href='/profil/kusmiKlub' target='_blank'>ici</a>");
         $this->askIfNeedHelpAgain();
+    }
+
+    public function clientAccount()
+    {
+        $this->ask("Pouvez-vous me donner l'adresse mail liée à votre compte client s'il vous plaît ?", function(Answer $answer) {
+            $this->email = $answer->getText();
+            $this->say("Merci {$this->firstName}, notre équipe reviendra vers vous rapidement avec une solution à votre problème. Vous serez contacté sur {$this->email}");
+            $this->askIfNeedHelpAgain();
+        });
     }
 
     public function bye()
