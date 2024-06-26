@@ -35,6 +35,7 @@
             <a href="{{ path('app_cart') }}" class="header__top__icons__item">
                 <img src={{ asset('build/images/icon-cart.svg') }} alt="Icon Cart"/>
                 <span>Panier</span>
+                <span id="cart-quantity">{{ cartQuantity }}</span>
             </a>
             <button class="header__top__icons__item header__top__icons__item-burger" id="btn-menu-open">
                 <img src={{ asset('build/images/icon-menu.svg') }} alt="Icon Menu"/>
@@ -228,6 +229,43 @@
             </li>
             <li class="header__menu__categories__item">
                 <a href="" class="header__menu__categories__item__title">La marque</a>
+                <ul class="header__menu__categories__item__dropdown">
+                    <button class="header__menu__back">
+                        <img src={{ asset('build/images/icon-arrow.svg') }} alt="Icon Back Menu"/>
+                    </button>
+                    <div class="header__menu__categories__item__dropdown__list text-center">
+                        <img class="w-75" src={{ asset('build/images/nous.jpg') }} alt="Brand"/>
+                        <ul class="text-center">
+                            <li>
+                                <a href="#">QUI SOMMES-NOUS ?</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header__menu__categories__item__dropdown__list text-center">
+                        <img class="w-75" src={{ asset('build/images/france.png') }} alt="Brand"/>
+                        <ul class="text-center">
+                            <li>
+                                <a href="#">FABRIQUÉ EN FRANCE</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header__menu__categories__item__dropdown__list text-center">
+                        <img class="w-75" src={{ asset('build/images/naturel.jpg') }} alt="Brand"/>
+                        <ul class="text-center">
+                            <li>
+                            <a href="#">INGRÉDIENT NATUREL</a>
+                           </li>
+                        </ul>
+                    </div>
+                    <div class="header__menu__categories__item__dropdown__list text-center">
+                        <img class="w-75" src={{ asset('build/images/blog.png') }} alt="Brand"/>
+                        <ul class="text-center">
+                            <li>
+                                <a href="{{ path('app_article') }}">BLOG</a>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
             </li>
         </ul>
     </div>
