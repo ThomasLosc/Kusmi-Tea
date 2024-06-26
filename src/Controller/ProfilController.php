@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Adresse;
+use App\Entity\ReferralCode;
 use App\Repository\AdresseRepository;
 use App\Repository\CommandeRepository;
+use App\Repository\ReferralCodeRepository;
+use App\Repository\ReferralRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,7 +40,7 @@ class ProfilController extends AbstractController
     }
 
     #[Route('/profil/kusmiKlub', name: 'app_kusmi_klub')]
-    public function kusmiClub(AdresseRepository $adresseRepository, EntityManagerInterface $entityManager, Request $request, CommandeRepository $commandeRepository): Response
+    public function kusmiClub(AdresseRepository $adresseRepository, EntityManagerInterface $entityManager, Request $request, CommandeRepository $commandeRepository, ReferralRepository $referralRepository, ReferralCodeRepository $referralCodeRepository): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
@@ -54,11 +57,19 @@ class ProfilController extends AbstractController
         }
 
         $user = $this->getUser();
+        $referrals = $referralRepository->findBy(['referrer' => $user]);
+        $referral_code = $referralCodeRepository->findOneBy(['user' => $user]);
 
         $form = $this->createForm(KusmiKlubType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $referralCode = new ReferralCode();
+            $referralCode->setCode(strtoupper($user->getNom()) . '-' . $user->getId());
+            $referralCode->setUser($user);
+
+            $entityManager->persist($referralCode);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -70,7 +81,9 @@ class ProfilController extends AbstractController
         return $this->render('profil/kusmiklub.html.twig', [
             'form' => $form->createView(),
             'user' => $user,
-            'points' => $points
+            'points' => $user->getPoints(),
+            'referrals' => $referrals,
+            'referral_code' => $referral_code
         ]);
     }
 

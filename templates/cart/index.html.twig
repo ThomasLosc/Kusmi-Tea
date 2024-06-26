@@ -86,7 +86,7 @@
                     </div>
                     <a href="{{ path('app_commande_cart') }}">Commander</a>
                     <span class="cart__content__sidebar__total__amount__points">
-                        Gagnez {% if totalCost < 49 %}{{ totalCost - 4.50 }}{% else %}{{ totalCost }}{% endif %} points avec cette commande !
+                        Gagnez {% if totalCost < 49 %}{{ (totalCost - 4.50)|number_format }}{% else %}{{ totalCost|number_format }}{% endif %} points avec cette commande !
                     </span>
                 </div>
             </div>

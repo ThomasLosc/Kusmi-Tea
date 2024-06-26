@@ -75,10 +75,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'user')]
     private Collection $commandes;
 
+    #[ORM\OneToMany(targetEntity: ReferralCode::class, mappedBy: 'user')]
+    private Collection $referralCodes;
+
+    #[ORM\OneToMany(targetEntity: Referral::class, mappedBy: 'referrer')]
+    private Collection $referrals;
+
+    #[ORM\Column(type: "integer")]
+    private int $points = 0;
+
+    #[ORM\OneToMany(targetEntity: PointLog::class, mappedBy: 'user', orphanRemoval: true)]
+    private $pointLogs;
+
     public function __construct()
     {
         $this->adresses = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->referralCodes = new ArrayCollection();
+        $this->referrals = new ArrayCollection();
+        $this->pointLogs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -355,4 +370,108 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
          return $this;
      }
+
+    /**
+     * @return Collection|ReferralCode[]
+     */
+    public function getReferralCodes(): Collection
+    {
+        return $this->referralCodes;
+    }
+
+    public function addReferralCode(ReferralCode $referralCode): self
+    {
+        if (!$this->referralCodes->contains($referralCode)) {
+            $this->referralCodes[] = $referralCode;
+            $referralCode->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReferralCode(ReferralCode $referralCode): self
+    {
+        if ($this->referralCodes->removeElement($referralCode)) {
+            // set the owning side to null (unless already changed)
+            if ($referralCode->getUser() === $this) {
+                $referralCode->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Referral[]
+     */
+    public function getReferrals(): Collection
+    {
+        return $this->referrals;
+    }
+
+    public function addReferral(Referral $referral): self
+    {
+        if (!$this->referrals->contains($referral)) {
+            $this->referrals[] = $referral;
+            $referral->setReferrer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReferral(Referral $referral): self
+    {
+        if ($this->referrals->removeElement($referral)) {
+            // set the owning side to null (unless already changed)
+            if ($referral->getReferrer() === $this) {
+                $referral->setReferrer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPoints(): int
+    {
+        return $this->points;
+    }
+
+    public function setPoints(int $points): self
+    {
+        $this->points = $points;
+        return $this;
+    }
+
+    public function addPoints(int $points): self
+    {
+        $this->points += $points;
+        return $this;
+    }
+
+    public function getPointLogs(): Collection
+    {
+        return $this->pointLogs;
+    }
+
+    public function addPointLog(PointLog $pointLog): self
+    {
+        if (!$this->pointLogs->contains($pointLog)) {
+            $this->pointLogs[] = $pointLog;
+            $pointLog->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePointLog(PointLog $pointLog): self
+    {
+        if ($this->pointLogs->removeElement($pointLog)) {
+            // set the owning side to null (unless already changed)
+            if ($pointLog->getUser() === $this) {
+                $pointLog->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 }

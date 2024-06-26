@@ -64,6 +64,7 @@ padding: 20px 0;
 display: flex;
 justify-content: center;
 
+
 .btn-article {
   width: 100%;
   padding: 15px;
@@ -167,4 +168,36 @@ color: #fff;
   text-decoration: none;
   border: 1px solid #000;
 }
+}
+
+.container-fluid.article-blog {
+  background-color: #fff;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+
+  .largeur-block {
+    width: 80%;
+    @media (max-width: $breakpoint-desktop) {
+      width: 100%;
+    }
+    }
+
+    .btn-article {
+      width: 100%;
+      padding: 15px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      font-family: 'Lato', sans-serif;
+    
+      &:hover {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #000;
+      }
+    }
+    
 }

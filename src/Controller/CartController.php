@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use App\Entity\PointLog;
 use App\Form\CommandeType;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -109,6 +110,16 @@ public function createCommande(CartService $cartService, EntityManagerInterface 
     $commande->setProductIds($productIds);
     $commande->setDate(new \DateTime());
     $commande->setUser($this->getUser());
+
+    $this->getUser()->addPoints(round($totalPoints));
+
+    $pointLog = new PointLog();
+    $pointLog->setUser($this->getUser());
+    $pointLog->setLabel('Commande');
+    $pointLog->setPoints(round($totalPoints));
+    $pointLog->setDate(new \DateTime());
+
+    $entityManager->persist($pointLog);
 
     $entityManager->persist($commande);
     $entityManager->flush();

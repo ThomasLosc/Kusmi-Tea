@@ -106,6 +106,14 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('referralCode', TextType::class, [
+                'required' => false,
+                'mapped' => false,
+                'label' => 'Code de parrainage (optionnel)',
+                'attr' => [
+                    'class' => 'input-design mt-2'
+                ],
+            ]);
         ;
     }
 
