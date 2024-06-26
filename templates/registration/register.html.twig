@@ -48,6 +48,9 @@
                         {{ form_row(registrationForm.email) }}
                     </div>
                     <div class="col-md-12 mt-3">
+                        {{ form_row(registrationForm.referralCode) }}
+                    </div>
+                    <div class="col-md-12 mt-3">
                         <label for="{{ registrationForm.plainPassword.first.vars.id }}" class="form-label"><span class="text-danger">*</span> Mot de passe</label>
                         {{ form_widget(registrationForm.plainPassword.first, { 'attr': {'class': 'input-design', 'autocomplete': 'new-password'} }) }}
                         <span class="mdp-size mt-2">Celui ci doit inclure : 8 caractères minimum, 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère alphanumérique</span>

@@ -110,6 +110,8 @@ public function createCommande(CartService $cartService, EntityManagerInterface 
     $commande->setDate(new \DateTime());
     $commande->setUser($this->getUser());
 
+    $this->getUser()->addPoints(round($totalPoints));
+
     $entityManager->persist($commande);
     $entityManager->flush();
 

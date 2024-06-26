@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Referral;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\ReferralCodeRepository;
 use App\Security\Authenticator;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,7 +36,7 @@ class RegistrationController extends AbstractController
 
     
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, Authenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, Authenticator $authenticator, EntityManagerInterface $entityManager, ReferralCodeRepository $referralCodeRepository): Response
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home');
@@ -52,6 +54,26 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+
+            // Handle referral code
+            $referralCode = $form->get('referralCode')->getData();
+            if ($referralCode) {
+                $codeEntity = $referralCodeRepository->findOneBy(['code' => $referralCode]);
+                if ($codeEntity) {
+                    $referral = new Referral();
+                    $referral->setReferrer($codeEntity->getUser());
+                    $referral->setReferred($user);
+
+                    // Add 10 points to the referrer
+                    $codeEntity->getUser()->addPoints(10);
+
+                    $entityManager->persist($referral);
+                    $entityManager->persist($codeEntity->getUser());
+                }
+            }
+
+            // Add 10 points to the user
+            $user->addPoints(10);
 
             $entityManager->persist($user);
             $entityManager->flush();
