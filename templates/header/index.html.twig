@@ -35,6 +35,7 @@
             <a href="{{ path('app_cart') }}" class="header__top__icons__item">
                 <img src={{ asset('build/images/icon-cart.svg') }} alt="Icon Cart"/>
                 <span>Panier</span>
+                <span id="cart-quantity">{{ cartQuantity }}</span>
             </a>
             <button class="header__top__icons__item header__top__icons__item-burger" id="btn-menu-open">
                 <img src={{ asset('build/images/icon-menu.svg') }} alt="Icon Menu"/>

@@ -43,7 +43,7 @@
                         <a href="{{ path('remove-from-cart', { 'id': item.product.id }) }}" class="cart__content__products__item__remove">
                             <img src="{{ asset('build/images/icon-close.svg') }}" alt="Supprimer" />
                         </a>
-                        <img src="{{ asset('build/images/ensemble-nomade.webp') }}" alt="" />
+                        <img src="{{ vich_uploader_asset(item.product, 'imageFile') }}" alt="{{ item.product.name }}">
                         <div class="cart__content__products__item__name">
                             <h2>{{ item.product.name }}</h2>
                             <span><strong>En stock</strong></span>
