@@ -28,6 +28,16 @@ class ArticleType extends AbstractType
                     'class' => 'input-design mt-2'
                 ],
             ])
+            ->add('description', TextType::class, [
+                'label' => 'Description :',
+                'required' => true,
+                'label_attr' => [
+                    'class' => 'label-design mt-3 fw-bold'
+                ],
+                'attr' => [
+                    'class' => 'input-design mt-2'
+                ],
+            ])
             ->add('text', CKEditorType::class, [
                 'label' => 'Article :',
                 'required' => true,
