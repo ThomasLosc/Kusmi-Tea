@@ -84,12 +84,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: "integer")]
     private int $points = 0;
 
+    #[ORM\OneToMany(targetEntity: PointLog::class, mappedBy: 'user', orphanRemoval: true)]
+    private $pointLogs;
+
     public function __construct()
     {
         $this->adresses = new ArrayCollection();
         $this->commandes = new ArrayCollection();
         $this->referralCodes = new ArrayCollection();
         $this->referrals = new ArrayCollection();
+        $this->pointLogs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -441,6 +445,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function addPoints(int $points): self
     {
         $this->points += $points;
+        return $this;
+    }
+
+    public function getPointLogs(): Collection
+    {
+        return $this->pointLogs;
+    }
+
+    public function addPointLog(PointLog $pointLog): self
+    {
+        if (!$this->pointLogs->contains($pointLog)) {
+            $this->pointLogs[] = $pointLog;
+            $pointLog->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePointLog(PointLog $pointLog): self
+    {
+        if ($this->pointLogs->removeElement($pointLog)) {
+            // set the owning side to null (unless already changed)
+            if ($pointLog->getUser() === $this) {
+                $pointLog->setUser(null);
+            }
+        }
+
         return $this;
     }
 }

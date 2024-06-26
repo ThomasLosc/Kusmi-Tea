@@ -89,6 +89,31 @@
             </div>
         </div>
 
+        <h2>Historique des points</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Label</th>
+                <th>Points</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% set sortedLogs = app.user.pointLogs|sort((a, b) => b.date <=> a.date) %}
+                {% for log in sortedLogs %}
+                    <tr>
+                        <td>{{ log.label }}</td>
+                        <td>{{ log.points }}</td>
+                        <td>{{ log.date|date('d-m-Y H:i') }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">Aucun log de points pour le moment.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
         <div class="affiliation w-100 mt-4">
             <h2>Invitez vos amis à rejoindre le Kusmi Klub et gagnez des points supplémentaires !</h2>
             <h3>Partagez votre code d'affiliation avec vos amis et gagnez 10 points par personne affiliée.</h3>

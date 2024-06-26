@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\PointLog;
 use App\Entity\Referral;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -67,6 +68,14 @@ class RegistrationController extends AbstractController
                     // Add 10 points to the referrer
                     $codeEntity->getUser()->addPoints(10);
 
+                    $pointLog = new PointLog();
+                    $pointLog->setUser($codeEntity->getUser());
+                    $pointLog->setLabel('Nouveau parrainage de ' . $user->getNom() . ' ' . $user->getPrenom());
+                    $pointLog->setPoints(10);
+                    $pointLog->setDate(new \DateTime());
+
+                    $entityManager->persist($pointLog);
+
                     $entityManager->persist($referral);
                     $entityManager->persist($codeEntity->getUser());
                 }
@@ -74,6 +83,14 @@ class RegistrationController extends AbstractController
 
             // Add 10 points to the user
             $user->addPoints(10);
+
+            $pointLog = new PointLog();
+            $pointLog->setUser($user);
+            $pointLog->setLabel('Inscription');
+            $pointLog->setPoints(10);
+            $pointLog->setDate(new \DateTime());
+
+            $entityManager->persist($pointLog);
 
             $entityManager->persist($user);
             $entityManager->flush();
