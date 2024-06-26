@@ -7,7 +7,7 @@ use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
 
-class TestConversation extends Conversation
+class BotConversation extends Conversation
 {
     protected $firstName;
     protected $taste;
@@ -30,6 +30,10 @@ class TestConversation extends Conversation
             ->addButtons([
                 Button::create('Quelles sont les valeurs de Kusmi Tea ?')->value('values'),
                 Button::create('Quel thé choisir ?')->value('whichTea'),
+                Button::create('Quels sont les délais de livraison ?')->value('shipping'),
+                Button::create('Où se trouvent vos magasins ?')->value('shopLocation'),
+                Button::create('Puis-je payer ma commande en plusieurs fois ?')->value('multiplePaiements'),
+                Button::create('Avez-vous un programme de fidélité ?')->value('fidelity'),
             ]);
 
         $this->ask($question, function (Answer $answer) {
@@ -40,6 +44,14 @@ class TestConversation extends Conversation
                     $this->whichTea();
                 } elseif($selectedValue === "values") {
                     $this->valuesKusmiTea();
+                } elseif($selectedValue === "shipping") {
+                    $this->shipping();
+                } elseif($selectedValue === "shopLocation") {
+                    $this->shopLocation();
+                } elseif($selectedValue === "multiplePaiements") {
+                    $this->multiplePaiements();
+                } elseif($selectedValue === "fidelity") {
+                    $this->fidelity();
                 }
             }
         });
@@ -47,11 +59,36 @@ class TestConversation extends Conversation
 
     public function askIfNeedHelpAgain()
     {
-        $question = Question::create('Avez-vous une autre question ?')
-            ->addButtons([
-                Button::create('Quelles sont les valeurs de Kusmi Tea ?')->value('values'),
-                Button::create('Quel thé choisir ?')->value('whichTea'),
-            ]);
+        $question = Question::create("Avez-vous besoin d'autres informations ?")
+        ->addButtons([
+            Button::create("J'ai d'autres questions")->value('another'),
+            Button::create("C'est bon pour moi !")->value('ok'),
+        ]);
+
+        $this->ask($question, function (Answer $answer) {
+            if ($answer->isInteractiveMessageReply()) {
+                $selectedValue = $answer->getValue();
+
+                if($selectedValue === "another") {
+                    $this->displayHelpQuestions();
+                } elseif($selectedValue === "ok") {
+                    $this->bye();
+                }
+            }
+        });
+    }
+
+    public function displayHelpQuestions()
+    {
+        $question = Question::create("Comment puis-je vous aider {$this->firstName} ?")
+        ->addButtons([
+            Button::create('Quelles sont les valeurs de Kusmi Tea ?')->value('values'),
+            Button::create('Quel thé choisir ?')->value('whichTea'),
+            Button::create('Quels sont les délais de livraison ?')->value('shipping'),
+            Button::create('Où se trouvent vos magasins ?')->value('shopLocation'),
+            Button::create('Puis-je payer ma commande en plusieurs fois ?')->value('multiplePaiements'),
+            Button::create('Avez-vous un programme de fidélité ?')->value('fidelity'),
+        ]);
 
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
@@ -61,6 +98,14 @@ class TestConversation extends Conversation
                     $this->whichTea();
                 } elseif($selectedValue === "values") {
                     $this->valuesKusmiTea();
+                } elseif($selectedValue === "shipping") {
+                    $this->shipping();
+                } elseif($selectedValue === "shopLocation") {
+                    $this->shopLocation();
+                } elseif($selectedValue === "multiplePaiements") {
+                    $this->multiplePaiements();
+                } elseif($selectedValue === "fidelity") {
+                    $this->fidelity();
                 }
             }
         });
@@ -155,7 +200,7 @@ class TestConversation extends Conversation
         }
 
         if (empty($recommendation)) {
-            $recommendation = 'Je vous recommande d\'explorer différents types de thé pour trouver celui qui vous convient le mieux.';
+            $recommendation = 'Plusieurs types de thé peuvent vous convenir. Je vous recommande d\'explorer différents types de thé pour trouver celui qui vous convient le mieux.';
         }
 
         $this->say($recommendation);
@@ -166,5 +211,34 @@ class TestConversation extends Conversation
     {
         $this->say("Kusmi Tea est centré sur la qualité, l'innovation, et la durabilité. Nous nous engageons à offrir des thés de haute qualité tout en respectant l'environnement et en soutenant des pratiques durables. Nous valorisons également l'innovation en proposant des mélanges uniques et créatifs pour satisfaire tous les goûts.");
         $this->askIfNeedHelpAgain();
+    }
+
+    public function shipping()
+    {
+        $this->say("- Click & Collect : compter 4 jours ouvrés selon les stocks en boutique.<br/>- Point relais & Colissimo : entre 3 et 5 jours ouvrés.<br/>- DHL : entre 1 et 2 jours ouvrés.");
+        $this->askIfNeedHelpAgain();
+    }
+
+    public function shopLocation()
+    {
+        $this->say("Pour trouver le magasin le plus proche de chez vous, nous vous invitons à effectuer votre recherche ici : <a href='https://boutique.kusmitea.com/' target='_blank'>https://boutique.kusmitea.com/</a>");
+        $this->askIfNeedHelpAgain();
+    }
+
+    public function multiplePaiements()
+    {
+        $this->say("Bien sûr ! Grâce à Alma, vous pouvez réaliser un paiement en 3 fois sans engagement et sans frais.");
+        $this->askIfNeedHelpAgain();
+    }
+
+    public function fidelity()
+    {
+        $this->say("En effet ! Grâce à notre programme de fidélité, vous pouvez accumuler des points pour bénéficier d'offres exclusives et accéder à nos ventes privées. Vous pouvez vous inscrire <a href='/profil/kusmiKlub' target='_blank'>ici</a>");
+        $this->askIfNeedHelpAgain();
+    }
+
+    public function bye()
+    {
+        $this->say("J'espère avoir pu vous aider. Bon shopping {$this->firstName} !");
     }
 }
