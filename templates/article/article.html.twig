@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body d-flex align-items-center flex-column">
                     <h2 class="card-title">{{ article.nom }}</h2>
-                    <p class="card-text">voici l'article</p>
+                    <p class="card-text">{{ article.description|slice(0, 200) }}</p>
                     <a href="{{ path('app_article_show', {'id': article.id}) }}"  class="btn-article-2">VOIR L'ARTICLE</a>
                 </div>
             </div>

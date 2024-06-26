@@ -3,10 +3,20 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-<div class="container-fluid article-id">
+<div class="container-fluid article-blog">
     <div class="row largeur-block">
         <div class="col-md-12">
-            
+            <div class="d-flex align-items-center justify-content-center flex-column w-80 m-auto">
+                <h2 class="mt-5">{{ article.nom }}</h1>
+                <img class="w-75 mt-5" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="Kusmi Tea">
+            </div>
+            <div class="w-80 m-auto">
+                <p class="mt-2">{{ article.text|raw }}</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-center flex-column w-80 m-auto">
+                <a href="{{ path('app_article') }}" class="btn-article">RETOUR</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

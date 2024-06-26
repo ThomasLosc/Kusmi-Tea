@@ -35,6 +35,9 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?CategorieArticle $categorie = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -97,6 +100,18 @@ class Article
     public function setCategorie(?CategorieArticle $categorie): static
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
