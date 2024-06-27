@@ -41,22 +41,22 @@
         <div class="swiper-wrapper">
             {% for produit in produits %}
             <div class="products-selection__products__item swiper-slide">
-                <div class="products-selection__products__item__image">
+                <a href="/product/{{ produit.getUuid() }}" class="products-selection__products__item__image">
                     {% if produit.isNew == true %}
                     <img src={{ asset('build/images/new.webp') }} alt="Nouveautés" class="products-selection__products__item__image-tag"/>
                     {% endif %}
                     {% if produit.imageName %}
                         <img src="{{ vich_uploader_asset(produit, 'imageFile') }}" alt="Rituel Minceur" class="products-selection__products__item__image-product"/>
                     {% endif %}
-                </div>
-                <div class="products-selection__products__item__infos">
+                </a>
+                <a href="/product/{{ produit.getUuid() }}" class="products-selection__products__item__infos">
                     <h3>{{ produit.name }}</h3>
                     <p>{{ produit.description }}</p>
                     <span>{{ produit.weight }}g</span>
                     <div class="products-selection__products__item__infos__prices">
                         <span>{{ produit.price }} €</span>
                     </div>
-                </div>
+                </a>
                 <a href="" class="btn btn-add-to-cart" data-product-id="{{ produit.id }}" data-quantity="1">
                     AJOUTER
                 </a>
