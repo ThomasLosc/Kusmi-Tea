@@ -41,7 +41,7 @@
         <div class="swiper-wrapper">
             {% for produit in produits %}
             <div class="products-selection__products__item swiper-slide">
-                <a href="/product/{{ produit.getUuid() }}" class="products-selection__products__item__image">
+                <a href="/product/{{ produit.getUuid() }}" class="products-selection__products__item__image text-decoration-none">
                     {% if produit.isNew == true %}
                     <img src={{ asset('build/images/new.webp') }} alt="Nouveautés" class="products-selection__products__item__image-tag"/>
                     {% endif %}
