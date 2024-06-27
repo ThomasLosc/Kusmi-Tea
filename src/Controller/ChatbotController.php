@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Conversation\TestConversation;
+use App\Conversation\BotConversation;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Cache\SymfonyCache;
 use BotMan\BotMan\Drivers\DriverManager;
@@ -33,7 +33,7 @@ class ChatbotController extends AbstractController
         $botman = BotManFactory::create($config, new SymfonyCache($adapter));
         
         $botman->hears('{message}', function($bot, $firstName) {
-            $bot->startConversation(new TestConversation($firstName));
+            $bot->startConversation(new BotConversation($firstName));
         });
 
         $botman->listen();
