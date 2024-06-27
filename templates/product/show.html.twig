@@ -10,9 +10,6 @@
     <div class="row w-75 mx-auto">
         <div class="col-md-7">
             <div class="product-image-container d-flex justify-content-center mt-4">
-                <div class="image-promo">
-                    -20%
-                </div>
                 <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.name }}" style="max-width: 400px;max-height: 400px">
             </div>
         </div>
@@ -27,15 +24,12 @@
                             {{ product.description }}
                         </div>
                         <div class="product-card-weight fw-bold">
-                            {{ product.weight }}
+                            {{ product.weight }}g
                         </div>
                     </div>
                     <div class="product-card-price">
                         {{ product.price }}€
                     </div>
-                </div>
-                <div class="promo-product-card">
-                    Un ensemble à thé glacé à 39,90€ seulement*
                 </div>
                 <a href="" class="btn btn-add-to-cart" data-product-id="{{ product.id }}" data-quantity="1">
                     AJOUTER
