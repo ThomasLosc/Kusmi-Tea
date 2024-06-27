@@ -17,6 +17,14 @@ class CategorieArticleController extends AbstractController
     #[Route('/', name: 'app_categorie_article_index', methods: ['GET'])]
     public function index(CategorieArticleRepository $categorieArticleRepository): Response
     {
+        $user = $this->getUser();
+
+        foreach ($user->getRoles() as $role) {
+            if (!$role == "ROLE_ADMIN") {
+                return $this->redirectToRoute('app_home');
+            }
+        }
+
         return $this->render('categorie_article/index.html.twig', [
             'categorie_articles' => $categorieArticleRepository->findAll(),
         ]);
@@ -25,6 +33,16 @@ class CategorieArticleController extends AbstractController
     #[Route('/new', name: 'app_categorie_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $categorieArticle = new CategorieArticle();
         $form = $this->createForm(CategorieArticleType::class, $categorieArticle);
         $form->handleRequest($request);
@@ -45,6 +63,16 @@ class CategorieArticleController extends AbstractController
     #[Route('/{id}', name: 'app_categorie_article_show', methods: ['GET'])]
     public function show(CategorieArticle $categorieArticle): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         return $this->render('categorie_article/show.html.twig', [
             'categorie_article' => $categorieArticle,
         ]);
@@ -53,6 +81,16 @@ class CategorieArticleController extends AbstractController
     #[Route('/{id}/edit', name: 'app_categorie_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, CategorieArticle $categorieArticle, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $form = $this->createForm(CategorieArticleType::class, $categorieArticle);
         $form->handleRequest($request);
 
@@ -71,6 +109,16 @@ class CategorieArticleController extends AbstractController
     #[Route('/{id}', name: 'app_categorie_article_delete', methods: ['POST'])]
     public function delete(Request $request, CategorieArticle $categorieArticle, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         if ($this->isCsrfTokenValid('delete'.$categorieArticle->getId(), $request->request->get('_token'))) {
             $entityManager->remove($categorieArticle);
             $entityManager->flush();

@@ -17,6 +17,16 @@ class CategoryController extends AbstractController
     #[Route('/add/category', name: 'category_add')]
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
 
@@ -44,6 +54,16 @@ class CategoryController extends AbstractController
     #[Route('/edit/category/{id}', name: 'category_edit')]
     public function edit($id, Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $category = $categoryRepository->find($id);
         $form = $this->createForm(CategoryType::class, $category);
 
@@ -70,6 +90,16 @@ class CategoryController extends AbstractController
     #[Route('/list/category', name: 'category_list')]
     public function list(CategoryRepository $categoryRepository): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $categories = $categoryRepository->findAll();
 
         return $this->render('category/list.html.twig', [
@@ -81,6 +111,16 @@ class CategoryController extends AbstractController
     #[Route('/category/{slug}', name: 'category_show')]
     public function show($slug, CategoryRepository $categoryRepository): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $category = $categoryRepository->findOneBy(['slug' => $slug]);
 
         return $this->render('category/show.html.twig', [

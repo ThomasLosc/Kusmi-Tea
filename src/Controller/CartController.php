@@ -39,6 +39,7 @@ class CartController extends AbstractController
     #[Route('/add-to-cart/{id}/{quantity}', name: 'add-to-cart')]
     public function addToCart(CartService $cartService, int $id, int $quantity): JsonResponse
     {
+        
         $cartService->addToCart($id, $quantity);
         
         return $this->json(['status' => 'success', 'message' => 'Produit ajouté au panier']);
@@ -72,10 +73,6 @@ class CartController extends AbstractController
     #[Route('/cart/commande/', name: 'app_commande_cart', methods: ['POST', 'GET'])]
 public function createCommande(CartService $cartService, EntityManagerInterface $entityManager): Response
 {
-
-    if (!$this->getUser()) {
-        return $this->redirectToRoute('app_login');
-    }
 
     $cartContent = $cartService->getCartContent();
 

@@ -18,6 +18,16 @@ class ProductController extends AbstractController
     #[Route('/product', name: 'app_product')]
     public function index(): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         return $this->render('product/index.html.twig', [
             'controller_name' => 'ProductController',
         ]);
@@ -26,6 +36,16 @@ class ProductController extends AbstractController
     #[Route('/add/product', name: 'app_product_add')]
     public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
 
@@ -61,6 +81,16 @@ class ProductController extends AbstractController
     #[Route('/list/product', name: 'app_product_list')]
     public function list(ProductRepository $productRepository): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $products = $productRepository->findAll();
 
         return $this->render('product/list.html.twig', [
@@ -71,6 +101,16 @@ class ProductController extends AbstractController
     #[Route('/product/{uuid}/edit', name: 'app_product_edit')]
     public function edit($uuid, Request $request, EntityManagerInterface $entityManager, ProductRepository $productRepository): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $product = $productRepository->findOneBy(['uuid' => $uuid]);
         $form = $this->createForm(ProductType::class, $product);
 

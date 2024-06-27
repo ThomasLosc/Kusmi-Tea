@@ -17,6 +17,17 @@ class ArticleController extends AbstractController
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
+
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
         ]);
@@ -25,6 +36,12 @@ class ArticleController extends AbstractController
     #[Route('/blog', name: 'app_article', methods: ['GET'])]
 public function article(ArticleRepository $articleRepository, Request $request): Response
 {
+    $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
     $categorie = $request->query->get('categorie');
     if ($categorie) {
         $articles = $articleRepository->findBy(['categorie' => $categorie]);
@@ -46,6 +63,16 @@ public function article(ArticleRepository $articleRepository, Request $request):
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -66,6 +93,13 @@ public function article(ArticleRepository $articleRepository, Request $request):
     #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
     public function show(Article $article): Response
     {
+
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);
@@ -74,6 +108,16 @@ public function article(ArticleRepository $articleRepository, Request $request):
     #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
@@ -92,6 +136,16 @@ public function article(ArticleRepository $articleRepository, Request $request):
     #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->getEmail() != "blondin.thomas.pro@gmail.com") {
+            return $this->redirectToRoute('app_home');
+        }
+
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             $entityManager->remove($article);
             $entityManager->flush();
